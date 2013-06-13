@@ -8,5 +8,15 @@
 #
 # In this file only require other files. Avoid other source code.
 
-require 'bio-ensembl-rest/ensembl-rest.rb'
+require 'net/http'
+require 'bio'
+
+require_relative 'bio-ensembl-rest/sequence.rb'
+require_relative 'bio-ensembl-rest/ensembl-rest.rb'
+
+# perché non va?
+# Dir.glob('bio-ensembl-rest/*.rb').each do |f|
+#   require_relative f
+# end
+
 
