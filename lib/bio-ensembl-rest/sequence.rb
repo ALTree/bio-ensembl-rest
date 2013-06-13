@@ -1,7 +1,7 @@
 module BioEnsemblRest
   module Sequence
 
-    def self.sequence_id(id, args)
+    def self.sequence_id(id, args = {}) 
       # parse options
       opts = {}
       args.each {|k, v| opts[k.to_s] = v}
@@ -13,6 +13,7 @@ module BioEnsemblRest
       path[-1] = ''
 
       # check if content-type is ruby
+      # FIXME: if multiseq is true Bio::Sequence can't parse text/plain right
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
         plain_opts['content-type'] = 'text/plain'

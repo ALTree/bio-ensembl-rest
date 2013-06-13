@@ -37,8 +37,10 @@ module BioEnsemblRest
         parsed_opts['content-type'] = v
       when 'multiseq'
         parsed_opts['multiple_sequences'] = v ? '1' : '0'
-      when 'expand'
-        parsed_opts[v[0] == 'down' ? 'expand_3prime' : 'expand_5prime'] = v[1]
+      when 'expand_down'
+        parsed_opts['expand_3prime'] = v.to_s
+      when 'expand_up'
+        parsed_opts['expand_5prime'] = v.to_s
       else
         parsed_opts[k] = v
       end
@@ -51,10 +53,12 @@ module BioEnsemblRest
         parsed_opts['content-type'] = 'text/x-fasta'
       when 'json'
         parsed_opts['content-type'] = 'application/json'
-      when 'string'
+      when 'text'
         parsed_opts['content-type'] = 'text/plain'
       when 'yaml'
         parsed_opts['content-type'] = 'text/x-yaml'
+      when 'xml'
+        parsed_opts['content-type'] = 'text/x-seqxml+xml'
       else
         parsed_opts[k] = v
       end

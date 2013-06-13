@@ -1,25 +1,48 @@
+Bio Ensembl Rest
+================
+
+A Ruby library for the RESTful Ensembl API.
+
 # bio-ensembl-rest
 
 [![Build Status](https://secure.travis-ci.org/ALTree/bioruby-ensembl-rest.png)](http://travis-ci.org/ALTree/bioruby-ensembl-rest)
 
-Full description goes here
 
-Note: this software is under active development!
-
-## Installation
+Obtaining
+---------
 
 ```sh
     gem install bio-ensembl-rest
 ```
 
-## Usage
+Usage
+-----
+
+TODO
+
+## Sequence
+
+### Sequence.sequence_id 
+
+Query for multiple types of Sequence by its stable identifier.
+
+Parameters (required in **bold**)
+  * **id** 
+  * format: [fasta|json|text|yaml|xml|ruby]
+  * type: [genomic|cds|cdna|protein]
+  * expand_up
+  * expand_down
+  * mask: [soft|hard]
+  * multiseq: [true|false]
+
+Examples:
 
 ```ruby
-    require 'bio-ensembl-rest'
+
+
 ```
 
-The API doc is online. For more code examples see the test files in
-the source tree.
+
         
 ## Project home page
 
@@ -28,20 +51,6 @@ how to contribute, see
 
   http://github.com/ALTree/bioruby-ensembl-rest
 
-The BioRuby community is on IRC server: irc.freenode.org, channel: #bioruby.
-
-## Cite
-
-If you use this software, please cite one of
-  
-* [BioRuby: bioinformatics software for the Ruby programming language](http://dx.doi.org/10.1093/bioinformatics/btq475)
-* [Biogem: an effective tool-based approach for scaling up open source software development in bioinformatics](http://dx.doi.org/10.1093/bioinformatics/bts080)
-
-## Biogems.info
-
-This Biogem is published at [#bio-ensembl-rest](http://biogems.info/index.html)
-
-## Copyright
 
 Copyright (c) 2013 Alberto Donizetti. See LICENSE.txt for further details.
 
