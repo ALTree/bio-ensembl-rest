@@ -2,10 +2,12 @@ require_relative 'helper'
 
 class TestSequence < Test::Unit::TestCase
 
+  ### sequence_id tests ###
   context 'sequence_id' do
     
     setup do
       BioEnsemblRest.connect_db
+      require 'json'
     end
 
     should 'return the correct string' do
@@ -52,6 +54,12 @@ class TestSequence < Test::Unit::TestCase
       assert response.scan(/>\w{15,18}\n/).size > 1
     end
 
+    should 'support json response' do
+      seq = BioEnsemblRest::Sequence.sequence_id 'ENSG00000157764',
+              format: 'json'
+      assert_nothing_raised {JSON.parse(seq)}
+    end
+
     should 'return masked sequences' do
       seq1 = BioEnsemblRest::Sequence.sequence_id 'ENST00000288602', 
               mask: 'hard'
@@ -64,5 +72,52 @@ class TestSequence < Test::Unit::TestCase
 
   end
 
+  ### sequence_id tests ###
+  context 'sequence_region' do
+
+    setup do
+      BioEnsemblRest.connect_db
+      require 'json'
+    end
+
+    should 'return the correct string' do
+      seq = BioEnsemblRest::Sequence.sequence_region 'human', 
+              'X:1000000..1000100:1'
+      assert_equal 'GAAACAGCTACTTGG', seq[0..14]
+      assert_equal seq.size, 101
+    end
+
+    should 'works with different coords_systems' do
+      assert_nothing_raised do
+        BioEnsemblRest::Sequence.sequence_region 'human', 
+              'AADC01095577.1:1..100',
+              format: 'fasta',
+              coords: 'seqlevel'
+        end
+    end
+
+    should 'expand the sequence upstream and downstream' do
+      seq = BioEnsemblRest::Sequence.sequence_region 'human',
+              'X:1000000..1000100:1',
+              expand_up: 50,
+              expand_down: 50
+      assert_equal 201, seq.size
+    end
+
+    should 'support json response' do
+      seq = BioEnsemblRest::Sequence.sequence_region 'human',
+              'X:1000000..1000100:1',  
+              format: 'json'
+      assert_nothing_raised {JSON.parse(seq)}
+    end
+
+    should 'return a Bio::Sequence object' do
+      seq = BioEnsemblRest::Sequence.sequence_region 'human',
+              'X:1000000..1000100:1',
+              format: 'ruby'
+      assert_instance_of Bio::Sequence, seq
+    end
+
+  end
 
 end

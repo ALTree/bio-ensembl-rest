@@ -1,70 +1,112 @@
 module BioEnsemblRest
 
-  ## self-explained
+  ## start HTTP database connection
   def self.connect_db 
     $SERVER = URI.parse 'http://beta.rest.ensembl.org'
     $HTTP_CONNECTION = Net::HTTP.new($SERVER.host, $SERVER.port)
   end
 
 
-  ## check HTTP response
-  def self.check_response(response)
-  case response.code
-  when '200'
-    return response.body
-  when '400'
-    raise 'Bad request: ' + response.body
-  when '404' 
-    raise 'Not Found'
-  when '429' 
-    raise 'Too many requests'
-  when '503'
-    raise 'Service Unavailable'
-  else
-    raise "Bad response code: #{response.code}"
-  end
-  end
+  ## parse options stuff ##
 
-
-  ## parse options
   def self.parse_options(opts)
     parsed_opts = {}
+    opts.each {|k, v| parsed_opts[k.to_s] = v}
 
-    # check keys
-    opts.each do |k, v| 
-      case k
-      when 'format'
-        parsed_opts['content-type'] = v
-      when 'multiseq'
-        parsed_opts['multiple_sequences'] = v ? '1' : '0'
-      when 'expand_down'
-        parsed_opts['expand_3prime'] = v.to_s
-      when 'expand_up'
-        parsed_opts['expand_5prime'] = v.to_s
-      else
-        parsed_opts[k] = v
-      end
-    end
-
-    # check values
-    parsed_opts.each do |k, v|
-      case v
-      when 'fasta'
-        parsed_opts['content-type'] = 'text/x-fasta'
-      when 'json'
-        parsed_opts['content-type'] = 'application/json'
-      when 'text'
-        parsed_opts['content-type'] = 'text/plain'
-      when 'yaml'
-        parsed_opts['content-type'] = 'text/x-yaml'
-      when 'xml'
-        parsed_opts['content-type'] = 'text/x-seqxml+xml'
-      else
-        parsed_opts[k] = v
-      end
-    end
+    parse_format parsed_opts
+    parse_expand parsed_opts
+    parse_multiseq parsed_opts
+    parse_coords parsed_opts
 
     parsed_opts
   end
+
+  def self.parse_format(opts)
+    supported_formats = {
+      'fasta' => 'text/x-fasta',
+      'json' => 'application/json',
+      'text' => 'text/plain',
+      'yaml' => 'text/x-yaml',
+      'xml' => 'text/x-seqxml+xml' }
+    if opts['format']
+      if supported_formats[opts['format']]
+        opts['content-type'] = supported_formats[opts['format']]
+      else
+        opts['content-type'] = opts['format']
+      end
+      opts.delete 'format'
+    end
+    opts
+  end
+
+  def self.parse_expand(opts)
+    if opts['expand_down'] 
+      opts['expand_3prime'] = opts['expand_down'] 
+      opts.delete 'expand_down'
+    end
+    if opts['expand_up'] 
+      opts['expand_5prime'] = opts['expand_up'] 
+      opts.delete 'expand_up'
+    end
+  end
+
+  def self.parse_multiseq(opts)
+    if opts['multiseq'] 
+      opts['multiple_sequences'] = opts['multiseq'] ? '1' : '0'
+      opts.delete 'multiseq'
+    end
+  end
+
+  def self.parse_coords(opts)
+    if opts['coords']
+      opts['coord_system'] = opts['coords']
+      opts.delete 'coords'
+    end
+  end
+
+
+  ## HTTP request stuff ##
+
+  # build path
+  def self.build_path(home, opts)
+    path = home + '?'
+    opts.each { |k,v| path << "#{k}=#{v};"  if k != 'content-type' }
+    path[-1] = ''
+    path
+  end
+
+  # make request
+  def self.fetch_data(path, opts)
+    request = Net::HTTP::Get.new path
+    request.content_type = opts['content-type'] || 'text/plain'
+
+    # ask for data
+    response = $HTTP_CONNECTION.request request
+
+    # check response
+    return check_response response
+  end
+
+
+  #check HTTP response
+  def self.check_response(response)
+    case response.code
+    when '200'
+      return response.body
+    when '400'
+      raise 'Bad request: ' + response.body
+    when '404' 
+      raise 'Not Found'
+    when '429' 
+      raise 'Too many requests'
+    when '503'
+      raise 'Service Unavailable'
+    else
+      raise "Bad response code: #{response.code}"
+    end
+  end
+
+
+
 
 end

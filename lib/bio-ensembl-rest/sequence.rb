@@ -1,18 +1,16 @@
 module BioEnsemblRest
   module Sequence
 
-    def self.sequence_id(id, args = {}) 
+    # Sequence
+    # GET sequence/id/:id
+    def self.sequence_id(id, opts = {}) 
       # parse options
-      opts = {}
-      args.each {|k, v| opts[k.to_s] = v}
       opts = BioEnsemblRest.parse_options opts
       
       # build path
-      path = "/sequence/id/#{id}?"
-      opts.each { |k,v| path << "#{k}=#{v};"  if k != 'content-type' }
-      path[-1] = ''
+      path = BioEnsemblRest.build_path "/sequence/id/#{id}", opts
 
-      # check if content-type is ruby
+      # check if content-type is ruby, pick the suitable Bio object
       # FIXME: if multiseq is true Bio::Sequence can't parse text/plain right
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
@@ -20,16 +18,29 @@ module BioEnsemblRest
         return Bio::Sequence.auto(sequence_id(id, plain_opts))
       end
 
-      # set request
-      request = Net::HTTP::Get.new path
-      request.content_type = opts['content-type'] || 'text/plain'
-
-      # ask for data
-      response = $HTTP_CONNECTION.request request
-
-      # check response
-      return BioEnsemblRest.check_response response
+      return BioEnsemblRest.fetch_data path, opts
     end
+
+
+    # Sequence
+    # GET sequence/region/:species/:region
+    def self.sequence_region(spec, reg, opts = {})
+      # parse options
+      opts = BioEnsemblRest.parse_options opts
+      
+      # build path
+      path = BioEnsemblRest.build_path "/sequence/region/#{spec}/#{reg}", opts
+
+      # check if content-type is ruby, pick the suitable Bio object
+      if opts['content-type'] == 'ruby'
+        plain_opts = opts.clone
+        plain_opts['content-type'] = 'text/plain'
+        return Bio::Sequence.auto(sequence_region(spec, reg, plain_opts))
+      end
+
+      return BioEnsemblRest.fetch_data path, opts
+    end
+
 
   end
 end
