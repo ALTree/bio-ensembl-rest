@@ -1,6 +1,7 @@
 module BioEnsemblRest
 
-  ## start HTTP database connection
+  ## start HTTP database connection ##
+
   def self.connect_db 
     $SERVER = URI.parse 'http://beta.rest.ensembl.org'
     $HTTP_CONNECTION = Net::HTTP.new($SERVER.host, $SERVER.port)
@@ -67,7 +68,6 @@ module BioEnsemblRest
 
   ## HTTP request stuff ##
 
-  # build path
   def self.build_path(home, opts)
     path = home + '?'
     opts.each { |k,v| path << "#{k}=#{v};"  if k != 'content-type' }
@@ -75,20 +75,13 @@ module BioEnsemblRest
     path
   end
 
-  # make request
   def self.fetch_data(path, opts)
     request = Net::HTTP::Get.new path
     request.content_type = opts['content-type'] || 'text/plain'
-
-    # ask for data
-    response = $HTTP_CONNECTION.request request
-
-    # check response
+    response = $HTTP_CONNECTION.request request # ask for data
     return check_response response
   end
 
-
-  #check HTTP response
   def self.check_response(response)
     case response.code
     when '200'
@@ -105,8 +98,6 @@ module BioEnsemblRest
       raise "Bad response code: #{response.code}"
     end
   end
-
-
 
 
 end
