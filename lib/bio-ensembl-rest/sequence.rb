@@ -4,10 +4,7 @@ module BioEnsemblRest
     # Sequence
     # GET sequence/id/:id
     def self.sequence_id(id, opts = {}) 
-      # parse options
       opts = BioEnsemblRest.parse_options opts
-      
-      # build path
       path = BioEnsemblRest.build_path "/sequence/id/#{id}", opts
 
       # check if content-type is ruby, pick the suitable Bio object
@@ -25,10 +22,7 @@ module BioEnsemblRest
     # Sequence
     # GET sequence/region/:species/:region
     def self.sequence_region(spec, reg, opts = {})
-      # parse options
       opts = BioEnsemblRest.parse_options opts
-      
-      # build path
       path = BioEnsemblRest.build_path "/sequence/region/#{spec}/#{reg}", opts
 
       # check if content-type is ruby, pick the suitable Bio object
