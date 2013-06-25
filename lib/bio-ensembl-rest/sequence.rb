@@ -1,10 +1,9 @@
 module BioEnsemblRest
   module Sequence
 
-    # Sequence
     # GET sequence/id/:id
     def self.sequence_id(id, opts = {}) 
-      opts = BioEnsemblRest.parse_options opts
+      opts = BioEnsemblRest.parse_options opts, 'sequence'
       path = BioEnsemblRest.build_path "/sequence/id/#{id}", opts
 
       # check if content-type is ruby, pick the suitable Bio object
@@ -15,14 +14,12 @@ module BioEnsemblRest
         return Bio::Sequence.auto(sequence_id(id, plain_opts))
       end
 
-      return BioEnsemblRest.fetch_data path, opts
+      return BioEnsemblRest.fetch_data path, opts, 'sequence'
     end
 
-
-    # Sequence
     # GET sequence/region/:species/:region
     def self.sequence_region(spec, reg, opts = {})
-      opts = BioEnsemblRest.parse_options opts
+      opts = BioEnsemblRest.parse_options opts, 'sequence'
       path = BioEnsemblRest.build_path "/sequence/region/#{spec}/#{reg}", opts
 
       # check if content-type is ruby, pick the suitable Bio object
@@ -32,9 +29,8 @@ module BioEnsemblRest
         return Bio::Sequence.auto(sequence_region(spec, reg, plain_opts))
       end
 
-      return BioEnsemblRest.fetch_data path, opts
+      return BioEnsemblRest.fetch_data path, opts,  'sequence'
     end
-
 
   end
 end

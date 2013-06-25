@@ -10,25 +10,37 @@ module BioEnsemblRest
 
   ## parse options stuff ##
 
-  def self.parse_options(opts)
+  def self.parse_options(opts, mod)
     parsed_opts = {}
     opts.each {|k, v| parsed_opts[k.to_s] = v}
 
     parse_format parsed_opts
-    parse_expand parsed_opts
-    parse_multiseq parsed_opts
-    parse_coords parsed_opts
+    case mod
+    when 'sequence'
+      parse_expand parsed_opts
+      parse_multiseq parsed_opts
+      parse_coords parsed_opts
+    when 'comparative'
+      parse_aligned parsed_opts
+      parse_species parsed_opts
+      parse_taxon parsed_opts
+    end
 
     parsed_opts
   end
 
+  ## common
   def self.parse_format(opts)
     supported_formats = {
       'fasta' => 'text/x-fasta',
       'json' => 'application/json',
       'text' => 'text/plain',
       'yaml' => 'text/x-yaml',
-      'xml' => 'text/x-seqxml+xml' }
+      'xml' => 'text/xml',
+      'seqxml' => 'text/x-seqxml+xml', 
+      'phyloxml' => 'text/x-phyloxml+xml',
+      'nh' => 'text/x-nh'
+    }
     if opts['format']
       if supported_formats[opts['format']]
         opts['content-type'] = supported_formats[opts['format']]
@@ -40,6 +52,7 @@ module BioEnsemblRest
     opts
   end
 
+  ## sequence
   def self.parse_expand(opts)
     if opts['expand_down'] 
       opts['expand_3prime'] = opts['expand_down'] 
@@ -65,6 +78,34 @@ module BioEnsemblRest
     end
   end
 
+  ## comparative
+  def self.parse_aligned(opts)
+    if opts['aligned']
+      opts['aligned'] = opts['aligned'] ? '1' : '0'
+      opts.delete 'aligned'
+    end
+  end
+
+  def self.parse_species(opts)
+    if opts['species']
+      opts['target-species'] = opts['species']
+      opts.delete 'species'
+    end
+  end
+
+  def self.parse_taxon(opts)
+    if opts['taxon']
+      opts['target_taxon'] = opts['taxon']
+      opts.delete 'taxon'
+    end
+  end
+
+  def self.parse_condensed(opts)
+    if opts['condensed']
+      opts['format'] = 'condensed'
+      opts.delete 'condensed'
+    end
+  end
 
   ## HTTP request stuff ##
 
@@ -75,9 +116,13 @@ module BioEnsemblRest
     path
   end
 
-  def self.fetch_data(path, opts)
+  def self.fetch_data(path, opts, mod)
+    default_types = {
+      'sequence' => 'text/plain',
+      'compara' => 'text/xml'
+    }
     request = Net::HTTP::Get.new path
-    request.content_type = opts['content-type'] || 'text/plain'
+    request.content_type = opts['content-type'] || default_types[mod]
     response = $HTTP_CONNECTION.request request # ask for data
     return check_response response
   end
@@ -90,6 +135,8 @@ module BioEnsemblRest
       raise 'Bad request: ' + response.body
     when '404' 
       raise 'Not Found'
+    when '415'
+      raise 'Unsupported Media Type'
     when '429' 
       raise 'Too many requests'
     when '503'

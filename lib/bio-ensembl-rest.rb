@@ -12,6 +12,7 @@ require 'net/http'
 require 'bio'
 
 require_relative 'bio-ensembl-rest/sequence.rb'
+require_relative 'bio-ensembl-rest/comparative-genomics.rb'
 require_relative 'bio-ensembl-rest/ensembl-rest.rb'
 
 # perché non va?
