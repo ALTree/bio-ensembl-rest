@@ -30,7 +30,7 @@ Example:
 RoadMap
 -----
 
-Core:
+### Core
 
  * Comparative Genomics
   * genetree_id ☑
@@ -84,7 +84,7 @@ Core:
   * vep_region
   * vep_id
 
-Tests:
+### Tests
 
  * Comparative Genomics ☑
  * Cross Reference
@@ -96,7 +96,7 @@ Tests:
  * Sequences ☑
  * Variation
 
-Documentation:
+### Documentation
 
  * Comparative Genomics
  * Cross Reference
