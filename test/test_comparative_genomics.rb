@@ -33,6 +33,12 @@ class TestComparativeGenomics < Test::Unit::TestCase
         end      
     end
 
+    should 'return a Bio::PhyloXML object' do
+      tree = ComparativeGenomics.genetree_id 'ENSGT00390000003602',
+              format: 'ruby' 
+      assert_instance_of Bio::PhyloXML::Parser, tree
+    end
+
     should 'work allow the aligned parameter' do
       assert_nothing_raised do
         ComparativeGenomics.genetree_id 'ENSGT00390000003602',
@@ -56,16 +62,30 @@ class TestComparativeGenomics < Test::Unit::TestCase
 
   context 'genetree_member_id' do 
 
+    setup do 
+      BioEnsemblRest.connect_db
+    end
+
     should "work, that's all" do
       assert_nothing_raised do
         ComparativeGenomics.genetree_member_id 'ENSG00000157764'
       end
     end
 
+    should 'return a Bio::PhyloXML object' do
+      tree = ComparativeGenomics.genetree_member_id'ENSG00000157764',
+              format: 'ruby' 
+      assert_instance_of Bio::PhyloXML::Parser, tree
+    end
+
   end
 
 
   context 'genetree_member_symbol' do
+
+    setup do 
+      BioEnsemblRest.connect_db
+    end
 
     should 'return a tree with the BRCA2 gene' do
       tree = ComparativeGenomics.genetree_member_symbol 'homo_sapiens', 'BRCA2',
@@ -81,7 +101,12 @@ class TestComparativeGenomics < Test::Unit::TestCase
                   external_db: 'HGNC',
                   object: 'gene'
       end
+    end
 
+    should 'return a Bio::PhyloXML object' do
+      tree = ComparativeGenomics.genetree_member_symbol 'homo_sapiens', 'BRCA2',
+              format: 'ruby' 
+      assert_instance_of Bio::PhyloXML::Parser, tree
     end
 
   end
@@ -105,6 +130,12 @@ class TestComparativeGenomics < Test::Unit::TestCase
       hom = ComparativeGenomics.homology_id 'ENSG00000157764',
               format: 'xml'      
       assert_nothing_raised { REXML::Document.new hom }
+    end
+
+    should 'return a list of Homology objects' do 
+      homs = ComparativeGenomics.homology_id 'ENSG00000157764', 
+              format: 'ruby'
+      homs.each { |hom| assert_instance_of Homology, hom }
     end
 
     should 'support the compara parameter' do
@@ -155,7 +186,13 @@ class TestComparativeGenomics < Test::Unit::TestCase
       assert_nothing_raised { REXML::Document.new hom }
     end
 
-        should 'support condensed and type parameters' do 
+    should 'return a list of Homology objects' do 
+      homs = ComparativeGenomics.homology_symbol 'human', 'BRCA2', 
+              format: 'ruby'
+      homs.each { |hom| assert_instance_of Homology, hom }
+    end
+
+    should 'support condensed and type parameters' do 
       assert_nothing_raised do 
         ComparativeGenomics.homology_symbol 'human', 'BRCA2',
           format: 'json',
