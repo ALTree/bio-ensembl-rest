@@ -1,7 +1,7 @@
 module BioEnsemblRest
   module Sequence
 
-    # GET sequence/id/:id
+    # GET sequence/id/:id 
     def self.sequence_id(id, opts = {}) 
       opts = BioEnsemblRest.parse_options opts, 'sequence'
       path = BioEnsemblRest.build_path "/sequence/id/#{id}", opts

@@ -1,7 +1,7 @@
 module BioEnsemblRest
   module ComparativeGenomics
 
-    # GET genetree/id
+    # GET genetree/id/:id 
     def self.genetree_id(id, opts = {})
       opts = BioEnsemblRest.parse_options opts, 'comparative'
       path = BioEnsemblRest.build_path "/genetree/id/#{id}", opts
@@ -15,7 +15,7 @@ module BioEnsemblRest
       return BioEnsemblRest.fetch_data path, opts, 'compara'
     end
 
-    # GET genetree/member/id
+    # GET genetree/member/id/:id 
     def self.genetree_member_id(id, opts = {})
       opts = BioEnsemblRest.parse_options opts, 'comparative'
       path = BioEnsemblRest.build_path "/genetree/member/id/#{id}", opts
@@ -30,7 +30,7 @@ module BioEnsemblRest
 
     end
 
-    # GET genetree/member/symbol
+    # GET genetree/member/symbol/:species/:symbol 
     def self.genetree_member_symbol(species, symbol, opts = {})
       opts = BioEnsemblRest.parse_options opts, 'comparative'
       path = BioEnsemblRest.build_path "/genetree/member/symbol/#{species}/#{symbol}", opts
@@ -46,13 +46,15 @@ module BioEnsemblRest
     end
 
 
-    # GET homology/id/
+    # GET homology/id/:id 
     def self.homology_id(id, opts = {})
       opts = BioEnsemblRest.parse_options opts, 'comparative'
       path = BioEnsemblRest.build_path "/homology/id/#{id}", opts
 
       if opts['content-type'] == 'ruby'
-        data = JSON.parse ComparativeGenomics.homology_id id, format: 'json'
+        plain_opts = opts.clone
+        plain_opts['content-type'] = 'application/json'
+        data = JSON.parse ComparativeGenomics.homology_id id, plain_opts
         return build_homology_class data
       end
 
@@ -60,14 +62,15 @@ module BioEnsemblRest
     end
 
 
-    # GET homology/symbol
+    # GET homology/symbol/:species/:symbol 
     def self.homology_symbol(species, symbol, opts = {})
       opts = BioEnsemblRest.parse_options opts, 'comparative'
       path = BioEnsemblRest.build_path "/homology/symbol/#{species}/#{symbol}", opts
 
       if opts['content-type'] == 'ruby'
-        data = JSON.parse ComparativeGenomics.homology_symbol species, symbol, 
-                            format: 'json'
+        plain_opts = opts.clone
+        plain_opts['content-type'] = 'application/json'
+        data = JSON.parse ComparativeGenomics.homology_symbol species, symbol, plain_opts
         return build_homology_class data
       end
 

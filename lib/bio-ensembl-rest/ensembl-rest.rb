@@ -24,8 +24,9 @@ module BioEnsemblRest
       parse_aligned parsed_opts
       parse_species parsed_opts
       parse_taxon parsed_opts
+    when 'crossreference'
+      parse_all_levels parsed_opts
     end
-
     parsed_opts
   end
 
@@ -107,6 +108,13 @@ module BioEnsemblRest
     end
   end
 
+  ## crossreference
+  def self.parse_all_levels(opts)
+    if opts['all_levels']
+      opts['all_levels'] = opts['all_levels'] ? '1' : '0'
+    end
+  end
+
   ## HTTP request stuff ##
 
   def self.build_path(home, opts)
@@ -119,7 +127,8 @@ module BioEnsemblRest
   def self.fetch_data(path, opts, mod)
     default_types = {
       'sequence' => 'text/plain',
-      'compara' => 'text/xml'
+      'compara' => 'text/xml',
+      'crossreference' => 'text/plain'
     }
     request = Net::HTTP::Get.new path
     request.content_type = opts['content-type'] || default_types[mod]
