@@ -40,9 +40,9 @@ RoadMap
   * homology_symbol ☑
 
  * Cross Reference
-  * xrefs_id
-  * xrefs_name
-  * xrefs_species
+  * xrefs_id ☑
+  * xrefs_name ☑
+  * xrefs_species ☑
 
  * Features
   * feature_id
@@ -87,7 +87,7 @@ RoadMap
 ### Tests
 
  * Comparative Genomics ☑
- * Cross Reference
+ * Cross Reference ☑
  * Features
  * Information
  * Lookup
