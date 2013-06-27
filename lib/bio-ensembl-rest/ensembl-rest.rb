@@ -129,7 +129,8 @@ module BioEnsemblRest
       'sequence' => 'text/plain',
       'compara' => 'text/xml',
       'crossreference' => 'text/plain',
-      'features' => 'text/plain'
+      'features' => 'text/plain',
+      'information' => 'text/plain'
     }
     request = Net::HTTP::Get.new path
     request.content_type = opts['content-type'] || default_types[mod]

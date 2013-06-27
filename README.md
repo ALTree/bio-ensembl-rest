@@ -49,14 +49,14 @@ RoadMap
   * feature_region ☑
 
  * Information
-  * assembly_info
-  * assembly_info_region
-  * info_comparas
-  * info_data
-  * info_ping
-  * info_rest
-  * info_software
-  * info_species
+  * assembly_info ☑
+  * assembly_info_region ☑
+  * info_comparas ☑
+  * info_data ☑
+  * info_ping ☑
+  * info_rest ☑
+  * info_software ☑
+  * info_species ☑
 
  * Lookup
   * lookup_id
@@ -89,7 +89,7 @@ RoadMap
  * Comparative Genomics ☑
  * Cross Reference ☑
  * Features ☑
- * Information
+ * Information ☑
  * Lookup
  * Mapping
  * Ontologies and Taxonomy
