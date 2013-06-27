@@ -120,7 +120,7 @@ module BioEnsemblRest
   def self.build_path(home, opts)
     path = home + '?'
     opts.each { |k,v| path << "#{k}=#{v};"  if k != 'content-type' }
-    path[-1] = ''
+    path[-1] = '' if not opts
     path
   end
 
@@ -128,7 +128,8 @@ module BioEnsemblRest
     default_types = {
       'sequence' => 'text/plain',
       'compara' => 'text/xml',
-      'crossreference' => 'text/plain'
+      'crossreference' => 'text/plain',
+      'features' => 'text/plain'
     }
     request = Net::HTTP::Get.new path
     request.content_type = opts['content-type'] || default_types[mod]

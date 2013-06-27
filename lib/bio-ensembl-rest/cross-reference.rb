@@ -6,6 +6,7 @@ module BioEnsemblRest
       opts = BioEnsemblRest.parse_options opts, 'crossreference'
       path = BioEnsemblRest.build_path "/xrefs/id/#{id}", opts
 
+      # TODO: ruby object?
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
         plain_opts['content-type'] = 'application/json'
@@ -20,6 +21,7 @@ module BioEnsemblRest
       opts = BioEnsemblRest.parse_options opts, 'crossreference'
       path = BioEnsemblRest.build_path "/xrefs/name/#{species}/#{name}", opts
 
+      # TODO: ruby object?
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
         plain_opts['content-type'] = 'application/json'
@@ -34,6 +36,7 @@ module BioEnsemblRest
       opts = BioEnsemblRest.parse_options opts, 'crossreference'
       path = BioEnsemblRest.build_path "/xrefs/symbol/#{species}/#{symbol}", opts
 
+      # TODO: ruby object?
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
         plain_opts['content-type'] = 'application/json'

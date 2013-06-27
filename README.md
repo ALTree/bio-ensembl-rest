@@ -45,8 +45,8 @@ RoadMap
   * xrefs_species ☑
 
  * Features
-  * feature_id
-  * feature_region
+  * feature_id ☑
+  * feature_region ☑
 
  * Information
   * assembly_info
@@ -88,7 +88,7 @@ RoadMap
 
  * Comparative Genomics ☑
  * Cross Reference ☑
- * Features
+ * Features ☑
  * Information
  * Lookup
  * Mapping
