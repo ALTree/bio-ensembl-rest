@@ -129,7 +129,7 @@ module BioEnsemblRest
   ## HTTP request stuff ##
 
   def self.build_path(home, opts)
-    path = home + ((opts == nil) || (opts.size == 1 && opts.has_key?('content-type')) ? '' : '?')
+    path = home + '?'
     opts.each { |k,v| path << "#{k}=#{v};"  if k != 'content-type' }
     path[-1] = '' if not opts
     path
