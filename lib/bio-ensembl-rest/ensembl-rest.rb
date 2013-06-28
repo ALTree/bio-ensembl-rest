@@ -24,8 +24,11 @@ module BioEnsemblRest
       parse_aligned parsed_opts
       parse_species parsed_opts
       parse_taxon parsed_opts
+      parse_condensed parsed_opts
     when 'crossreference'
       parse_all_levels parsed_opts
+    when 'lookup'
+      parse_full parsed_opts
     end
     parsed_opts
   end
@@ -115,10 +118,18 @@ module BioEnsemblRest
     end
   end
 
+  ## lookup
+  def self.parse_full(opts)
+    if opts['full']
+      opts['format'] = 'full'
+      opts.delete 'full'
+    end    
+  end
+
   ## HTTP request stuff ##
 
   def self.build_path(home, opts)
-    path = home + '?'
+    path = home + ((opts == nil) || (opts.size == 1 && opts.has_key?('content-type')) ? '' : '?')
     opts.each { |k,v| path << "#{k}=#{v};"  if k != 'content-type' }
     path[-1] = '' if not opts
     path
@@ -130,7 +141,8 @@ module BioEnsemblRest
       'compara' => 'text/xml',
       'crossreference' => 'text/plain',
       'features' => 'text/plain',
-      'information' => 'text/plain'
+      'information' => 'text/plain',
+      'lookup' => 'application/json'
     }
     request = Net::HTTP::Get.new path
     request.content_type = opts['content-type'] || default_types[mod]

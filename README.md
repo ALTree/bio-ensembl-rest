@@ -59,7 +59,7 @@ RoadMap
   * info_species ☑
 
  * Lookup
-  * lookup_id
+  * lookup_id ☑
 
  * Mapping
   * map 
@@ -90,7 +90,7 @@ RoadMap
  * Cross Reference ☑
  * Features ☑
  * Information ☑
- * Lookup
+ * Lookup ☑
  * Mapping
  * Ontologies and Taxonomy
  * Sequences ☑
