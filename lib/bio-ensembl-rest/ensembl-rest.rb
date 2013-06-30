@@ -142,7 +142,8 @@ module BioEnsemblRest
       'crossreference' => 'text/plain',
       'features' => 'text/plain',
       'information' => 'text/plain',
-      'lookup' => 'application/json'
+      'lookup' => 'application/json',
+      'mapping' => 'application/json'
     }
     request = Net::HTTP::Get.new path
     request.content_type = opts['content-type'] || default_types[mod]

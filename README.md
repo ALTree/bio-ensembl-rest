@@ -62,10 +62,10 @@ RoadMap
   * lookup_id ☑
 
  * Mapping
-  * map 
-  * map_from_cdna
-  * map_from_cds
-  * map_from_translation
+  * map ☑
+  * map_from_cdna ☑
+  * map_from_cds ☑
+  * map_from_translation ☑
 
  * Ontologies and Taxonomy
   * ontology_ancestors
@@ -91,7 +91,7 @@ RoadMap
  * Features ☑
  * Information ☑
  * Lookup ☑
- * Mapping
+ * Mapping ☑
  * Ontologies and Taxonomy
  * Sequences ☑
  * Variation
