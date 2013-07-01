@@ -72,9 +72,9 @@ RoadMap
   * ontology_ancestors_chart ☑
   * ontology_descendents ☑
   * ontology_id ☑
-  * ontology_name  ☑
+  * ontology_name ☑
 
-* Taxonomy
+ * Taxonomy
   * taxonomy_classifications
   * taxonomy_id
 
