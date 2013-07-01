@@ -1,6 +1,6 @@
 require_relative 'helper'
 
-class TestFeatures < Test::Unit::TestCase
+class TestMapping < Test::Unit::TestCase
 
   context 'test map' do 
 

@@ -121,6 +121,5 @@ module BioEnsemblRest
     end 
 
 
-
   end
 end

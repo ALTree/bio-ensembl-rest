@@ -1,6 +1,6 @@
 require_relative 'helper'
 
-class TestInformation < Test::Unit::TestCase
+class TestLookup < Test::Unit::TestCase
 
   context 'lookup_id' do 
 
@@ -33,9 +33,7 @@ class TestInformation < Test::Unit::TestCase
       assert look['db_type'] = 'core'
     end
 
-
   end
-
 
 
 end

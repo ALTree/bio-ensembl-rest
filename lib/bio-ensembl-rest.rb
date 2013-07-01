@@ -8,8 +8,8 @@
 #
 # In this file only require other files. Avoid other source code.
 
+require 'bio' 
 require 'net/http'
-require 'bio'
 require 'open-uri'
 
 Dir[File.dirname(__FILE__) + '/bio-ensembl-rest/*.rb'].each do |file| 

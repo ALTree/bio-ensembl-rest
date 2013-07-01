@@ -11,7 +11,6 @@ module BioEnsemblRest
 
       path = (BioEnsemblRest.build_path "/feature/id/#{id}", opts) + encoded_query
 
-      # TODO: ruby object?
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
         plain_opts['content-type'] = 'application/json'
@@ -32,7 +31,6 @@ module BioEnsemblRest
 
       path = (BioEnsemblRest.build_path "/feature/region/#{species}/#{region}", opts) + encoded_query
 
-      # TODO: ruby object?
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
         plain_opts['content-type'] = 'application/json'
@@ -41,7 +39,6 @@ module BioEnsemblRest
 
       return BioEnsemblRest.fetch_data path, opts, 'features'   
     end
-
 
   end
 end

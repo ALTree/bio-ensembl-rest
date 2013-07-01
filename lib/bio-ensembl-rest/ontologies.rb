@@ -6,7 +6,6 @@ module BioEnsemblRest
       return _ontology_id_generic id, 'ancestors_plain', opts
     end
 
-
     # GET ontology/ancestors/chart/:id
     def self.ontology_ancestor_chart(id, opts = {})
       return _ontology_id_generic id, 'ancestors_chart', opts
@@ -36,7 +35,6 @@ module BioEnsemblRest
       end
       path = BioEnsemblRest.build_path url, opts
 
-      # TODO: ruby object?
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
         plain_opts['content-type'] = 'application/json'
@@ -52,7 +50,6 @@ module BioEnsemblRest
       opts = BioEnsemblRest.parse_options opts, 'ontologies'
       path = BioEnsemblRest.build_path "/ontology/name/#{name}", opts
       
-      # TODO: ruby object?
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
         plain_opts['content-type'] = 'application/json'

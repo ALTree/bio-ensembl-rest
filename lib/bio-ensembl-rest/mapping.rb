@@ -22,7 +22,6 @@ module BioEnsemblRest
       return _map_generic id, region, 'cdna', opts       
     end
 
-
     # GET map/cds/:id/:region
     def self.map_from_cds(id, region, opts = {})
       return _map_generic id, region, 'cds', opts
@@ -32,7 +31,6 @@ module BioEnsemblRest
     def self.map_from_region(id, region, opts = {})
       return _map_generic id, region, 'translation', opts
     end
-
 
     # generic mapping form cdna and cds
     def self._map_generic(id, region, type, opts = {})
@@ -47,10 +45,7 @@ module BioEnsemblRest
       end
 
       return BioEnsemblRest.fetch_data path, opts, 'mapping'
-
     end
-
-
 
   end
 end

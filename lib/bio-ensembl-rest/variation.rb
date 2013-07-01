@@ -6,7 +6,6 @@ module BioEnsemblRest
       opts = BioEnsemblRest.parse_options opts, 'variation'
       path = BioEnsemblRest.build_path "/vep/#{species}/id/#{id}/consequences", opts
 
-      # TODO: ruby object?
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
         plain_opts['content-type'] = 'application/json'
@@ -31,9 +30,6 @@ module BioEnsemblRest
 
       return BioEnsemblRest.fetch_data path, opts, 'taxonomy'
     end
-
-
-
 
   end
 end

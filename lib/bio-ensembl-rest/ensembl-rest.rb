@@ -20,7 +20,7 @@ module BioEnsemblRest
       parse_expand parsed_opts
       parse_multiseq parsed_opts
       parse_coords parsed_opts
-    when 'comparative'
+    when 'compara'
       parse_aligned parsed_opts
       parse_species parsed_opts
       parse_taxon parsed_opts
