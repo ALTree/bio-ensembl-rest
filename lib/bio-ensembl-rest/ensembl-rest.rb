@@ -150,7 +150,7 @@ module BioEnsemblRest
     path = home + '?'
     opts.each { |k,v| path << "#{k}=#{v};"  if k != 'content-type' }
     path[-1] = '' if not opts
-    path
+    URI::encode path
   end
 
   def self.fetch_data(path, opts, mod)
@@ -162,7 +162,8 @@ module BioEnsemblRest
       'information' => 'text/plain',
       'lookup' => 'application/json',
       'mapping' => 'application/json',
-      'ontologies' => 'application/json'
+      'ontologies' => 'application/json',
+      'taxonomy' => 'application/json'
     }
     request = Net::HTTP::Get.new path
     request.content_type = opts['content-type'] || default_types[mod]

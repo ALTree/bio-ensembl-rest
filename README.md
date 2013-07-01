@@ -75,8 +75,8 @@ RoadMap
   * ontology_name ☑
 
  * Taxonomy
-  * taxonomy_classifications
-  * taxonomy_id
+  * taxonomy_classifications ☑
+  * taxonomy_id ☑
 
  * Sequences
   * sequence_id ☑
@@ -95,7 +95,7 @@ RoadMap
  * Lookup ☑
  * Mapping ☑
  * Ontologies ☑
- * Taxonomy
+ * Taxonomy ☑
  * Sequences ☑
  * Variation
 

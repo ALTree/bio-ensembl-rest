@@ -49,7 +49,6 @@ module BioEnsemblRest
 
     # GET ontology/name/:name
     def self.ontology_name(name, opts = {})
-      name.gsub!(' ', '+') # HTTP::GET doesn't like spaces here
       opts = BioEnsemblRest.parse_options opts, 'ontologies'
       path = BioEnsemblRest.build_path "/ontology/name/#{name}", opts
       

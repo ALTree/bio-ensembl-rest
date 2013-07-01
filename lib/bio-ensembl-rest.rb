@@ -10,6 +10,7 @@
 
 require 'net/http'
 require 'bio'
+require 'open-uri'
 
 Dir[File.dirname(__FILE__) + '/bio-ensembl-rest/*.rb'].each do |file| 
   require file
