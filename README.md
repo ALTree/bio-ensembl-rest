@@ -67,12 +67,14 @@ RoadMap
   * map_from_cds ☑
   * map_from_translation ☑
 
- * Ontologies and Taxonomy
-  * ontology_ancestors
-  * ontology_ancestors_chart 
-  * ontology_descendents
-  * ontology_id
-  * ontology_name 
+ * Ontologies
+  * ontology_ancestors ☑
+  * ontology_ancestors_chart ☑
+  * ontology_descendents ☑
+  * ontology_id ☑
+  * ontology_name  ☑
+
+* Taxonomy
   * taxonomy_classifications
   * taxonomy_id
 
@@ -92,7 +94,8 @@ RoadMap
  * Information ☑
  * Lookup ☑
  * Mapping ☑
- * Ontologies and Taxonomy
+ * Ontologies ☑
+ * Taxonomy
  * Sequences ☑
  * Variation
 
@@ -104,7 +107,8 @@ RoadMap
  * Information
  * Lookup
  * Mapping
- * Ontologies and Taxonomy
+ * Ontologies
+ * Taxonomy
  * Sequences
  * Variation
 

@@ -9,7 +9,7 @@ module BioEnsemblRest
 
 
   ## parse options stuff ##
-
+  # FIXME: refactor this crap
   def self.parse_options(opts, mod)
     parsed_opts = {}
     opts.each {|k, v| parsed_opts[k.to_s] = v}
@@ -29,6 +29,9 @@ module BioEnsemblRest
       parse_all_levels parsed_opts
     when 'lookup'
       parse_full parsed_opts
+    when 'ontologies'
+      parse_zero_distance parsed_opts
+      parse_closest_term parsed_opts
     end
     parsed_opts
   end
@@ -126,6 +129,21 @@ module BioEnsemblRest
     end    
   end
 
+  ## ontologies
+
+  def self.parse_closest_term(opts)
+    if opts['closest_term']
+      opts['closest_term'] = opts['closest_term'] ? '1' : '0'
+    end
+  end
+
+    def self.parse_zero_distance(opts)
+    if opts['zero_distance']
+      opts['zero_distance'] = opts['zero_distance'] ? '1' : '0'
+    end
+  end
+
+
   ## HTTP request stuff ##
 
   def self.build_path(home, opts)
@@ -143,7 +161,8 @@ module BioEnsemblRest
       'features' => 'text/plain',
       'information' => 'text/plain',
       'lookup' => 'application/json',
-      'mapping' => 'application/json'
+      'mapping' => 'application/json',
+      'ontologies' => 'application/json'
     }
     request = Net::HTTP::Get.new path
     request.content_type = opts['content-type'] || default_types[mod]
