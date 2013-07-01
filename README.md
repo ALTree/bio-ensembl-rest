@@ -27,90 +27,64 @@ Example:
     => "ACTGGGGGATACG"
 ```
 
-RoadMap
+Implemented
 -----
 
 ### Core
 
  * Comparative Genomics
-  * genetree_id ☑
-  * genetree_member_id ☑
-  * genetree_member_symbol ☑
-  * homology_id ☑
-  * homology_symbol ☑
+  * genetree_id 
+  * genetree_member_id 
+  * genetree_member_symbol 
+  * homology_id 
+  * homology_symbol 
 
  * Cross Reference
-  * xrefs_id ☑
-  * xrefs_name ☑
-  * xrefs_species ☑
+  * xrefs_id 
+  * xrefs_name 
+  * xrefs_species 
 
  * Features
-  * feature_id ☑
-  * feature_region ☑
+  * feature_id 
+  * feature_region 
 
  * Information
-  * assembly_info ☑
-  * assembly_info_region ☑
-  * info_comparas ☑
-  * info_data ☑
-  * info_ping ☑
-  * info_rest ☑
-  * info_software ☑
-  * info_species ☑
+  * assembly_info 
+  * assembly_info_region 
+  * info_comparas 
+  * info_data 
+  * info_ping 
+  * info_rest 
+  * info_software 
+  * info_species 
 
  * Lookup
-  * lookup_id ☑
+  * lookup_id 
 
  * Mapping
-  * map ☑
-  * map_from_cdna ☑
-  * map_from_cds ☑
-  * map_from_translation ☑
+  * map 
+  * map_from_cdna 
+  * map_from_cds 
+  * map_from_translation 
 
  * Ontologies
-  * ontology_ancestors ☑
-  * ontology_ancestors_chart ☑
-  * ontology_descendents ☑
-  * ontology_id ☑
-  * ontology_name ☑
+  * ontology_ancestors 
+  * ontology_ancestors_chart 
+  * ontology_descendents 
+  * ontology_id 
+  * ontology_name
 
  * Taxonomy
-  * taxonomy_classifications ☑
-  * taxonomy_id ☑
+  * taxonomy_classifications
+  * taxonomy_id
 
  * Sequences
-  * sequence_id ☑
-  * sequence_region ☑
+  * sequence_id
+  * sequence_region
 
  * Variation
   * vep_region
   * vep_id
-
-### Tests
-
- * Comparative Genomics ☑
- * Cross Reference ☑
- * Features ☑
- * Information ☑
- * Lookup ☑
- * Mapping ☑
- * Ontologies ☑
- * Taxonomy ☑
- * Sequences ☑
- * Variation
-
-### Documentation
-
- * Comparative Genomics
- * Cross Reference
- * Features
- * Information
- * Lookup
- * Mapping
- * Ontologies
- * Taxonomy
- * Sequences
- * Variation
 
   
 ## Project home page

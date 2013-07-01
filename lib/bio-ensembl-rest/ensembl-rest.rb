@@ -163,7 +163,8 @@ module BioEnsemblRest
       'lookup' => 'application/json',
       'mapping' => 'application/json',
       'ontologies' => 'application/json',
-      'taxonomy' => 'application/json'
+      'taxonomy' => 'application/json',
+      'variation' => 'application/json'
     }
     request = Net::HTTP::Get.new path
     request.content_type = opts['content-type'] || default_types[mod]
