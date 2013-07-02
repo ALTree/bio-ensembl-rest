@@ -1,18 +1,20 @@
 module EnsemblRest
   module ComparativeGenomics
 
-    # GET genetree/id/:id 
+    ##
+    # Retrieves Gene Tree dumps for a given Gene Tree stable identifier
     def self.genetree_id(id, opts = {})
       return _genetree_generic id, 'id', opts
     end
 
-    # GET genetree/member/id/:id 
+    ##
+    #  Retrieves the Gene Tree that contains the given stable identifier
     def self.genetree_member_id(id, opts = {})
       return _genetree_generic id, 'member', opts
     end
 
     # generic method used by genetree_id and genetree_member_id
-    def self._genetree_generic(id, type, opts = {})
+    def self._genetree_generic(id, type, opts = {}) # :nodoc:
       opts = EnsemblRest.parse_options opts, 'compara'
       url = type == 'id' ? "/genetree/id/#{id}" : "/genetree/member/id/#{id}"
       path = EnsemblRest.build_path url, opts
@@ -27,7 +29,8 @@ module EnsemblRest
     end
 
 
-    # GET genetree/member/symbol/:species/:symbol 
+    ##
+    # Retrieves a Gene Tree containing the Gene identified by the given symbol
     def self.genetree_member_symbol(species, symbol, opts = {})
       opts = EnsemblRest.parse_options opts, 'compara'
       path = EnsemblRest.build_path "/genetree/member/symbol/#{species}/#{symbol}", opts
@@ -42,7 +45,8 @@ module EnsemblRest
     end
 
 
-    # GET homology/id/:id 
+    ##
+    # Retrieves homology information by ensembl gene id
     def self.homology_id(id, opts = {})
       opts = EnsemblRest.parse_options opts, 'compara'
       path = EnsemblRest.build_path "/homology/id/#{id}", opts
@@ -58,7 +62,8 @@ module EnsemblRest
     end
 
 
-    # GET homology/symbol/:species/:symbol 
+    ##
+    # Retrieves homology information by symbol
     def self.homology_symbol(species, symbol, opts = {})
       opts = EnsemblRest.parse_options opts, 'compara'
       path = EnsemblRest.build_path "/homology/symbol/#{species}/#{symbol}", opts
@@ -78,7 +83,7 @@ module EnsemblRest
     # here we define the Homology class
     Object.const_set("Homology", Class.new)
 
-    def self.build_homology_class(json_data)
+    def self.build_homology_class(json_data) # :nodoc:
       # extract the homologies list (homology = ruby hash obj)
       homologies_data = json_data['data'][0]['homologies'] # this is a list of hashes
 

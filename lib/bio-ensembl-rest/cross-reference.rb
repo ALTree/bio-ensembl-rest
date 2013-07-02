@@ -1,7 +1,9 @@
 module EnsemblRest
   module CrossReference
 
-    # GET xrefs/id/:id 
+    ##
+    # Perform lookups of Ensembl Identifiers and retrieve their external cross 
+    # references in other databases
     def self.xrefs_id(id, opts = {})
       opts = EnsemblRest.parse_options opts, 'crossreference'
       path = EnsemblRest.build_path "/xrefs/id/#{id}", opts
@@ -16,8 +18,10 @@ module EnsemblRest
     end
 
 
-    # GET xrefs/name/:species/:name 
-     def self.xrefs_name(species, name, opts = {})
+    ##
+    # Performs a lookup based upon the primary accession or display label of 
+    # an external reference and returning the information we hold about the entry
+    def self.xrefs_name(species, name, opts = {})
       opts = EnsemblRest.parse_options opts, 'crossreference'
       path = EnsemblRest.build_path "/xrefs/name/#{species}/#{name}", opts
 
@@ -31,7 +35,8 @@ module EnsemblRest
     end   
 
 
-    # GET xrefs/symbol/:species/:symbol
+    ##
+    # Looks up an external symbol and returns all Ensembl objects linked to it
     def self.xrefs_symbol(species, symbol, opts = {})
       opts = EnsemblRest.parse_options opts, 'crossreference'
       path = EnsemblRest.build_path "/xrefs/symbol/#{species}/#{symbol}", opts

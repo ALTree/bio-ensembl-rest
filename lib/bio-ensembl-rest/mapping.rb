@@ -1,7 +1,8 @@
 module EnsemblRest
   module Mapping
 
-    # GET map/:species/:asm_one/:region/:asm_two
+    ##
+    # Convert the co-ordinates of one assembly to another
     def self.map(asm_one, asm_two, species, region, opts = {})
       opts = EnsemblRest.parse_options opts, 'mapping'
       path = EnsemblRest.build_path "/map/#{species}/#{asm_one}/#{region}/#{asm_two}", opts
@@ -17,23 +18,26 @@ module EnsemblRest
     end
 
 
-    # GET map/cdna/:id/:region
+    ##
+    # Convert from CDNA coordinates to genomic coordinates
     def self.map_from_cdna(id, region, opts = {})
       return _map_generic id, region, 'cdna', opts       
     end
 
-    # GET map/cds/:id/:region
+    ##
+    # Convert from CDS coordinates to genomic coordinates
     def self.map_from_cds(id, region, opts = {})
       return _map_generic id, region, 'cds', opts
     end
 
-    # GET map/translation/:id/:region
+    ##
+    # Convert from protein (translation) coordinates to genomic coordinates
     def self.map_from_region(id, region, opts = {})
       return _map_generic id, region, 'translation', opts
     end
 
     # generic mapping form cdna and cds
-    def self._map_generic(id, region, type, opts = {})
+    def self._map_generic(id, region, type, opts = {}) # :nodoc:
       opts = EnsemblRest.parse_options opts, 'mapping'
       path = EnsemblRest.build_path "/map/#{type}/#{id}/#{region}", opts
 

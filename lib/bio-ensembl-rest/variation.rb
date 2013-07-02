@@ -1,7 +1,8 @@
 module EnsemblRest
   module Variation
 
-    # GET vep/:species/id/:id/consequences
+    ##
+    # Fetch variant consequences based on a variation identifier
     def self.vep_id(id, species, opts = {})
       opts = EnsemblRest.parse_options opts, 'variation'
       path = EnsemblRest.build_path "/vep/#{species}/id/#{id}/consequences", opts
@@ -16,7 +17,8 @@ module EnsemblRest
     end
 
 
-    # GET vep/:species/:region/:allele/consequences
+    ##
+    # Fetch variant consequences
     def self.vep_region(allele, region, species, opts = {})
       opts = EnsemblRest.parse_options opts, 'variation'
       path = EnsemblRest.build_path "/vep/#{species}/#{region}/#{allele}/consequences", opts

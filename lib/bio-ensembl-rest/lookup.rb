@@ -1,7 +1,8 @@
 module EnsemblRest
   module Lookup
 
-    # GET lookup/id/:id
+    ##
+    # Query for an identifier's location in the available Ensembl databases
     def self.lookup_id(id, opts = {})
       opts = EnsemblRest.parse_options opts, 'lookup'
       path = EnsemblRest.build_path "/lookup/id/#{id}", opts

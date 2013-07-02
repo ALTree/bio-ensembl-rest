@@ -1,27 +1,31 @@
 module EnsemblRest
   module Ontologies
 
-    # GET ontology/ancestors/:id
+    ##
+    # Find all ancestors, all terms above, belonging to a given term
     def self.ontology_ancestor(id, opts = {})
       return _ontology_id_generic id, 'ancestors_plain', opts
     end
 
-    # GET ontology/ancestors/chart/:id
+    ##
+    # Reconstruct the entire ancestory of a term from is_a and part_of relationships.
     def self.ontology_ancestor_chart(id, opts = {})
       return _ontology_id_generic id, 'ancestors_chart', opts
     end 
 
-    # GET ontology/descendents/:id
+    ##
+    # Find all descendents, all terms below, belonging to a given term. 
     def self.ontology_descendents(id, opts = {})
       return _ontology_id_generic id, 'descendents', opts
     end
 
-    # GET ontology/id/:id 
+    ##
+    # Search for an ontological term by its namespaced identifier
     def self.ontology_id(id, opts = {})
       return _ontology_id_generic id, 'plain', opts
     end
 
-    def self._ontology_id_generic(id, type, opts = {})
+    def self._ontology_id_generic(id, type, opts = {}) # :nodoc:
       opts = EnsemblRest.parse_options opts, 'ontologies'
       case type 
       when 'ancestors_plain'
@@ -45,7 +49,8 @@ module EnsemblRest
     end
 
 
-    # GET ontology/name/:name
+    ##
+    # Search for a list of ontological terms by their name and an optional ontology
     def self.ontology_name(name, opts = {})
       opts = EnsemblRest.parse_options opts, 'ontologies'
       path = EnsemblRest.build_path "/ontology/name/#{name}", opts

@@ -1,7 +1,8 @@
 module EnsemblRest
   module Features
 
-    # GET feature/id/:id 
+    ##
+    # Uses the given identifier as a way of indicating the Slice of features required
     def self.feature_id(id, features, opts = {})
       opts = EnsemblRest.parse_options opts, 'feature'
 
@@ -21,7 +22,8 @@ module EnsemblRest
     end
 
 
-    # GET feature/region/:species/:region
+    ##
+    # Retrieves multiple types of features for a given region
     def self.feature_region(species, region, features, opts = {})
       opts = EnsemblRest.parse_options opts, 'feature'
 

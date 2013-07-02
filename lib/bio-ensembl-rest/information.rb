@@ -1,7 +1,8 @@
 module EnsemblRest
   module Information
 
-    # GET assembly/info/:species
+    ##
+    # Returns information about the current available assemblies in this given species
     def self.assembly_info(species, opts = {})
       opts = EnsemblRest.parse_options opts, 'information'
       path = EnsemblRest.build_path "/assembly/info/#{species}", opts
@@ -16,7 +17,8 @@ module EnsemblRest
     end
 
 
-    # GET assembly/info/:species/:region_name
+    ##
+    # Returns information about the given toplevel sequence region given to this endpoint
     def self.assembly_info_region(species, region, opts = {})
       opts = EnsemblRest.parse_options opts, 'information'
       path = EnsemblRest.build_path "/assembly/info/#{species}/#{region}", opts
@@ -31,7 +33,8 @@ module EnsemblRest
     end
 
 
-    # GET info/comparas
+    ##
+    # Lists all available comparative genomics databases and their data release
     def self.info_comparas(opts = {})
       opts = EnsemblRest.parse_options opts, 'information'
       path = EnsemblRest.build_path "/info/comparas", opts
@@ -46,7 +49,8 @@ module EnsemblRest
     end
 
 
-    # GET info/data
+    ##
+    # Shows the data releases available on this REST server
      def self.info_data(opts = {})
       opts = EnsemblRest.parse_options opts, 'information'
       path = EnsemblRest.build_path "/info/comparas", opts
@@ -61,7 +65,8 @@ module EnsemblRest
     end   
 
 
-    # GET info/ping
+    ##
+    # Pings the first available DBAdaptor to see if the service is still active
     def self.info_ping(opts = {})
       opts = EnsemblRest.parse_options opts, 'information'
       path = EnsemblRest.build_path "/info/comparas", opts
@@ -76,7 +81,8 @@ module EnsemblRest
     end
 
 
-    # GET info/rest
+    ##
+    # Shows the current version of the REST API
      def self.info_rest(opts = {})
       opts = EnsemblRest.parse_options opts, 'information'
       path = EnsemblRest.build_path "/info/comparas", opts
@@ -91,7 +97,8 @@ module EnsemblRest
     end   
 
 
-    # GET info/software
+    ##
+    # Shows the current version of the Ensembl API
      def self.info_software(opts = {})
       opts = EnsemblRest.parse_options opts, 'information'
       path = EnsemblRest.build_path "/info/comparas", opts
@@ -106,7 +113,8 @@ module EnsemblRest
     end  
 
 
-    # GET info/species 
+    ##
+    # Lists all available species, their aliases, available adaptor groups and data release
      def self.info_species(opts = {})
       opts = EnsemblRest.parse_options opts, 'information'
       path = EnsemblRest.build_path "/info/comparas", opts

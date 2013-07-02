@@ -1,17 +1,19 @@
 module EnsemblRest
   module Taxonomy
 
-    # GET taxonomy/id/:id
+    ##
+    # Search for a taxonomic term by its identifier or name
     def self.taxonomy_id(id, opts = {})
       return _taxonomy_generic id, 'id', opts
     end
 
-    # GET taxonomy/classification/:id
+    ##
+    # Return the taxonomic classification of a taxon node
     def self.taxonomy_classification(id, opts = {})
       return _taxonomy_generic id, 'classification', opts
     end
 
-    def self._taxonomy_generic(id, type, opts = {})
+    def self._taxonomy_generic(id, type, opts = {}) # :nodoc:
       opts = EnsemblRest.parse_options opts, 'taxonomy'
       path = EnsemblRest.build_path "/taxonomy/#{type}/#{id}", opts
 

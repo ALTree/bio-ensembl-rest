@@ -1,4 +1,4 @@
-module EnsemblRest
+module EnsemblRest 
 
   ## start HTTP database connection ##
 
@@ -10,7 +10,7 @@ module EnsemblRest
 
   ## parse options stuff ##
   # FIXME: refactor this crap
-  def self.parse_options(opts, mod)
+  def self.parse_options(opts, mod) # :nodoc:
     parsed_opts = {}
     opts.each {|k, v| parsed_opts[k.to_s] = v}
 
@@ -37,16 +37,19 @@ module EnsemblRest
   end
 
   ## common
-  def self.parse_format(opts)
+  def self.parse_format(opts) # :nodoc:
     supported_formats = {
-      'fasta' => 'text/x-fasta',
-      'json' => 'application/json',
       'text' => 'text/plain',
-      'yaml' => 'text/x-yaml',
-      'xml' => 'text/xml',
-      'seqxml' => 'text/x-seqxml+xml', 
-      'phyloxml' => 'text/x-phyloxml+xml',
+      'fasta' => 'text/x-fasta',
+      'gff3' => 'ext/x-gff3',
+      'json' => 'application/json',
+      'msgpack' => 'application/x-msgpack',
       'nh' => 'text/x-nh'
+      'seqxml' => 'text/x-seqxml+xml', 
+      'sereal' => 'application/x-sereal',
+      'phyloxml' => 'text/x-phyloxml+xml',
+      'xml' => 'text/xml',
+      'yaml' => 'text/x-yaml'
     }
     if opts['format']
       if supported_formats[opts['format']]
@@ -60,7 +63,7 @@ module EnsemblRest
   end
 
   ## sequence
-  def self.parse_expand(opts)
+  def self.parse_expand(opts) # :nodoc:
     if opts['expand_down'] 
       opts['expand_3prime'] = opts['expand_down'] 
       opts.delete 'expand_down'
@@ -71,14 +74,14 @@ module EnsemblRest
     end
   end
 
-  def self.parse_multiseq(opts)
+  def self.parse_multiseq(opts) # :nodoc:
     if opts['multiseq'] 
       opts['multiple_sequences'] = opts['multiseq'] ? '1' : '0'
       opts.delete 'multiseq'
     end
   end
 
-  def self.parse_coords(opts)
+  def self.parse_coords(opts) # :nodoc:
     if opts['coords']
       opts['coord_system'] = opts['coords']
       opts.delete 'coords'
@@ -86,28 +89,28 @@ module EnsemblRest
   end
 
   ## comparative
-  def self.parse_aligned(opts)
+  def self.parse_aligned(opts) # :nodoc:
     if opts['aligned']
       opts['aligned'] = opts['aligned'] ? '1' : '0'
       opts.delete 'aligned'
     end
   end
 
-  def self.parse_species(opts)
+  def self.parse_species(opts) # :nodoc:
     if opts['species']
       opts['target-species'] = opts['species']
       opts.delete 'species'
     end
   end
 
-  def self.parse_taxon(opts)
+  def self.parse_taxon(opts) # :nodoc:
     if opts['taxon']
       opts['target_taxon'] = opts['taxon']
       opts.delete 'taxon'
     end
   end
 
-  def self.parse_condensed(opts)
+  def self.parse_condensed(opts) # :nodoc:
     if opts['condensed']
       opts['format'] = 'condensed'
       opts.delete 'condensed'
@@ -115,14 +118,14 @@ module EnsemblRest
   end
 
   ## crossreference
-  def self.parse_all_levels(opts)
+  def self.parse_all_levels(opts) # :nodoc:
     if opts['all_levels']
       opts['all_levels'] = opts['all_levels'] ? '1' : '0'
     end
   end
 
   ## lookup
-  def self.parse_full(opts)
+  def self.parse_full(opts) # :nodoc:
     if opts['full']
       opts['format'] = 'full'
       opts.delete 'full'
@@ -131,13 +134,13 @@ module EnsemblRest
 
   ## ontologies
 
-  def self.parse_closest_term(opts)
+  def self.parse_closest_term(opts) # :nodoc:
     if opts['closest_term']
       opts['closest_term'] = opts['closest_term'] ? '1' : '0'
     end
   end
 
-    def self.parse_zero_distance(opts)
+    def self.parse_zero_distance(opts) # :nodoc:
     if opts['zero_distance']
       opts['zero_distance'] = opts['zero_distance'] ? '1' : '0'
     end
@@ -146,14 +149,14 @@ module EnsemblRest
 
   ## HTTP request stuff ##
 
-  def self.build_path(home, opts)
+  def self.build_path(home, opts) # :nodoc:
     path = home + '?'
     opts.each { |k,v| path << "#{k}=#{v};"  if k != 'content-type' }
     path[-1] = '' if not opts
     URI::encode path
   end
 
-  def self.fetch_data(path, opts, mod)
+  def self.fetch_data(path, opts, mod) # :nodoc:
     # what we should set as content-type in the header
     # to keep ensembl happy when the the user does not
     # use the format parameter to set the return type
@@ -175,8 +178,8 @@ module EnsemblRest
     return check_response response
   end
 
-  def self.check_response(response)
-    case response.code
+  def self.check_response(response) # :nodoc:
+    case response.code 
     when '200'
       return response.body
     when '400'
