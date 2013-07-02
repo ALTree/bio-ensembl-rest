@@ -4,7 +4,7 @@ module EnsemblRest
     ##
     # Query for multiple types of Sequence by its stable identifier
     def self.sequence_id(id, opts = {}) 
-      opts = EnsemblRest.parse_options opts, 'sequence'
+      opts = EnsemblRest.parse_options opts
       path = EnsemblRest.build_path "/sequence/id/#{id}", opts
 
       # FIXME: if multiseq is true Bio::Sequence can't parse text/plain right
@@ -21,7 +21,7 @@ module EnsemblRest
     ##
     # Query for a region of genomic sequence based on its location
     def self.sequence_region(species, region, opts = {})
-      opts = EnsemblRest.parse_options opts, 'sequence'
+      opts = EnsemblRest.parse_options opts
       path = EnsemblRest.build_path "/sequence/region/#{species}/#{region}", opts
 
       if opts['content-type'] == 'ruby'

@@ -4,7 +4,7 @@ module EnsemblRest
     ##
     # Fetch variant consequences based on a variation identifier
     def self.vep_id(id, species, opts = {})
-      opts = EnsemblRest.parse_options opts, 'variation'
+      opts = EnsemblRest.parse_options opts
       path = EnsemblRest.build_path "/vep/#{species}/id/#{id}/consequences", opts
 
       if opts['content-type'] == 'ruby'
@@ -20,7 +20,7 @@ module EnsemblRest
     ##
     # Fetch variant consequences
     def self.vep_region(allele, region, species, opts = {})
-      opts = EnsemblRest.parse_options opts, 'variation'
+      opts = EnsemblRest.parse_options opts
       path = EnsemblRest.build_path "/vep/#{species}/#{region}/#{allele}/consequences", opts
 
       # TODO: ruby object?

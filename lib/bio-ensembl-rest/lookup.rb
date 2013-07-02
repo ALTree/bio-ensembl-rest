@@ -4,7 +4,7 @@ module EnsemblRest
     ##
     # Query for an identifier's location in the available Ensembl databases
     def self.lookup_id(id, opts = {})
-      opts = EnsemblRest.parse_options opts, 'lookup'
+      opts = EnsemblRest.parse_options opts
       path = EnsemblRest.build_path "/lookup/id/#{id}", opts
 
       if opts['content-type'] == 'ruby'

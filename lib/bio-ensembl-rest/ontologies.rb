@@ -26,7 +26,7 @@ module EnsemblRest
     end
 
     def self._ontology_id_generic(id, type, opts = {}) # :nodoc:
-      opts = EnsemblRest.parse_options opts, 'ontologies'
+      opts = EnsemblRest.parse_options opts
       case type 
       when 'ancestors_plain'
         url = "/ontology/ancestors/#{id}"
@@ -52,7 +52,7 @@ module EnsemblRest
     ##
     # Search for a list of ontological terms by their name and an optional ontology
     def self.ontology_name(name, opts = {})
-      opts = EnsemblRest.parse_options opts, 'ontologies'
+      opts = EnsemblRest.parse_options opts
       path = EnsemblRest.build_path "/ontology/name/#{name}", opts
       
       if opts['content-type'] == 'ruby'

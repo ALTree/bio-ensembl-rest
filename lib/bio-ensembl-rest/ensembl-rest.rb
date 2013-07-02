@@ -9,7 +9,7 @@ module EnsemblRest
 
 
   ## parse options stuff ##
-  def self.parse_options(opts, mod) # :nodoc:
+  def self.parse_options(opts) # :nodoc:
     parsed_opts = {}
     opts.each {|k, v| parsed_opts[k.to_s] = v}
 

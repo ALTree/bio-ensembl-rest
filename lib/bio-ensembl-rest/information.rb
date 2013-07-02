@@ -4,7 +4,7 @@ module EnsemblRest
     ##
     # Returns information about the current available assemblies in this given species
     def self.assembly_info(species, opts = {})
-      opts = EnsemblRest.parse_options opts, 'information'
+      opts = EnsemblRest.parse_options opts
       path = EnsemblRest.build_path "/assembly/info/#{species}", opts
 
       if opts['content-type'] == 'ruby'
@@ -20,7 +20,7 @@ module EnsemblRest
     ##
     # Returns information about the given toplevel sequence region given to this endpoint
     def self.assembly_info_region(species, region, opts = {})
-      opts = EnsemblRest.parse_options opts, 'information'
+      opts = EnsemblRest.parse_options opts
       path = EnsemblRest.build_path "/assembly/info/#{species}/#{region}", opts
 
       if opts['content-type'] == 'ruby'
@@ -36,7 +36,7 @@ module EnsemblRest
     ##
     # Lists all available comparative genomics databases and their data release
     def self.info_comparas(opts = {})
-      opts = EnsemblRest.parse_options opts, 'information'
+      opts = EnsemblRest.parse_options opts
       path = EnsemblRest.build_path "/info/comparas", opts
 
       if opts['content-type'] == 'ruby'
@@ -52,7 +52,7 @@ module EnsemblRest
     ##
     # Shows the data releases available on this REST server
      def self.info_data(opts = {})
-      opts = EnsemblRest.parse_options opts, 'information'
+      opts = EnsemblRest.parse_options opts
       path = EnsemblRest.build_path "/info/comparas", opts
 
       if opts['content-type'] == 'ruby'
@@ -68,7 +68,7 @@ module EnsemblRest
     ##
     # Pings the first available DBAdaptor to see if the service is still active
     def self.info_ping(opts = {})
-      opts = EnsemblRest.parse_options opts, 'information'
+      opts = EnsemblRest.parse_options opts
       path = EnsemblRest.build_path "/info/comparas", opts
 
       if opts['content-type'] == 'ruby'
@@ -84,7 +84,7 @@ module EnsemblRest
     ##
     # Shows the current version of the REST API
      def self.info_rest(opts = {})
-      opts = EnsemblRest.parse_options opts, 'information'
+      opts = EnsemblRest.parse_options opts
       path = EnsemblRest.build_path "/info/comparas", opts
 
       if opts['content-type'] == 'ruby'
@@ -100,7 +100,7 @@ module EnsemblRest
     ##
     # Shows the current version of the Ensembl API
      def self.info_software(opts = {})
-      opts = EnsemblRest.parse_options opts, 'information'
+      opts = EnsemblRest.parse_options opts
       path = EnsemblRest.build_path "/info/comparas", opts
 
       if opts['content-type'] == 'ruby'
@@ -116,7 +116,7 @@ module EnsemblRest
     ##
     # Lists all available species, their aliases, available adaptor groups and data release
      def self.info_species(opts = {})
-      opts = EnsemblRest.parse_options opts, 'information'
+      opts = EnsemblRest.parse_options opts
       path = EnsemblRest.build_path "/info/comparas", opts
 
       if opts['content-type'] == 'ruby'

@@ -4,7 +4,7 @@ module EnsemblRest
     ##
     # Convert the co-ordinates of one assembly to another
     def self.map(asm_one, asm_two, species, region, opts = {})
-      opts = EnsemblRest.parse_options opts, 'mapping'
+      opts = EnsemblRest.parse_options opts
       path = EnsemblRest.build_path "/map/#{species}/#{asm_one}/#{region}/#{asm_two}", opts
 
       # TODO: ruby object?
@@ -36,9 +36,9 @@ module EnsemblRest
       return _map_generic id, region, 'translation', opts
     end
 
-    # generic mapping form cdna and cds
+    # generic mapping from cdna and cds
     def self._map_generic(id, region, type, opts = {}) # :nodoc:
-      opts = EnsemblRest.parse_options opts, 'mapping'
+      opts = EnsemblRest.parse_options opts
       path = EnsemblRest.build_path "/map/#{type}/#{id}/#{region}", opts
 
       # TODO: ruby object?

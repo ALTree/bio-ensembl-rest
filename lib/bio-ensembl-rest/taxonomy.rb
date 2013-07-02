@@ -14,7 +14,7 @@ module EnsemblRest
     end
 
     def self._taxonomy_generic(id, type, opts = {}) # :nodoc:
-      opts = EnsemblRest.parse_options opts, 'taxonomy'
+      opts = EnsemblRest.parse_options opts
       path = EnsemblRest.build_path "/taxonomy/#{type}/#{id}", opts
 
       if opts['content-type'] == 'ruby'

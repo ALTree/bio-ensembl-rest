@@ -15,7 +15,7 @@ module EnsemblRest
 
     # generic method used by genetree_id and genetree_member_id
     def self._genetree_generic(id, type, opts = {}) # :nodoc:
-      opts = EnsemblRest.parse_options opts, 'compara'
+      opts = EnsemblRest.parse_options opts
       url = type == 'id' ? "/genetree/id/#{id}" : "/genetree/member/id/#{id}"
       path = EnsemblRest.build_path url, opts
 
@@ -32,7 +32,7 @@ module EnsemblRest
     ##
     # Retrieves a Gene Tree containing the Gene identified by the given symbol
     def self.genetree_member_symbol(species, symbol, opts = {})
-      opts = EnsemblRest.parse_options opts, 'compara'
+      opts = EnsemblRest.parse_options opts
       path = EnsemblRest.build_path "/genetree/member/symbol/#{species}/#{symbol}", opts
 
       if opts['content-type'] == 'ruby'
@@ -48,7 +48,7 @@ module EnsemblRest
     ##
     # Retrieves homology information by ensembl gene id
     def self.homology_id(id, opts = {})
-      opts = EnsemblRest.parse_options opts, 'compara'
+      opts = EnsemblRest.parse_options opts
       path = EnsemblRest.build_path "/homology/id/#{id}", opts
 
       if opts['content-type'] == 'ruby'
@@ -65,7 +65,7 @@ module EnsemblRest
     ##
     # Retrieves homology information by symbol
     def self.homology_symbol(species, symbol, opts = {})
-      opts = EnsemblRest.parse_options opts, 'compara'
+      opts = EnsemblRest.parse_options opts
       path = EnsemblRest.build_path "/homology/symbol/#{species}/#{symbol}", opts
 
       if opts['content-type'] == 'ruby'
