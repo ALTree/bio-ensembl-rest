@@ -12,7 +12,8 @@ gem install bio-ensembl-rest
 or
 ```sh
 git clone git://github.com/ALTree/bio-ensembl-rest
-
+cd bio-ensemb-rest
+rake install
 ```
 
 Usage
