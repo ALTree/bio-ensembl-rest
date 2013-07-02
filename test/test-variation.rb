@@ -45,7 +45,7 @@ class TestVariation < Test::Unit::TestCase
 
     should 'return an xml object' do 
       var = Variation.vep_region 'C', '9:22125503-22125502:1', 'human',
-              format: 'xml'
+              response: 'xml'
       assert_nothing_raised { REXML::Document.new var }
     end
 

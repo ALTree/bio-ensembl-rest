@@ -7,7 +7,7 @@ Obtaining
 ---------
 
 ```sh
-    gem install bio-ensembl-rest
+gem install bio-ensembl-rest
 ```
 
 Usage
@@ -15,22 +15,18 @@ Usage
 
 Example:
 
-```sh
-    $ irb
-    >> require 'bio-ensembl-rest'
-    => true
+```ruby
+require 'bio-ensembl-rest'
+include EnsemblRest
 
-    >> BioEnsemblRest.connect_db
-    => #<Net::HTTP beta.rest.ensembl.org:80 open=false>
+EnsemblRest.connect_db
+puts Sequence.sequence_region 'Homo sapiens', 'X:1000000..1000025:1'
 
-    >> BioEnsemblRest::Sequence.sequence_id 'ENSG00000228985'
-    => "ACTGGGGGATACG"
+# >> GAAACAGCTACTTGGAAGGCTGAAGC
 ```
 
 Implemented
------
-
-### Core
+-----------
 
  * Comparative Genomics
   * genetree_id 

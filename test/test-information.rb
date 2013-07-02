@@ -10,7 +10,7 @@ class TestInformation < Test::Unit::TestCase
     end
 
     should 'return a json object' do 
-      info = Information.assembly_info 'homo_sapiens', format: 'json'
+      info = Information.assembly_info 'homo_sapiens', response: 'json'
       assert_nothing_raised { JSON.parse info }
     end
 
@@ -26,7 +26,7 @@ class TestInformation < Test::Unit::TestCase
 
     should 'return a xml object' do 
       info = Information.assembly_info_region 'homo_sapiens', 'X',
-                format: 'xml'
+                response: 'xml'
       assert_nothing_raised { REXML::Document.new info }
     end
 
@@ -41,12 +41,12 @@ class TestInformation < Test::Unit::TestCase
     end
 
     should 'return a json object' do 
-      info = Information.info_comparas format: 'json'
+      info = Information.info_comparas response: 'json'
       assert_nothing_raised { JSON.parse info }
     end
 
     should 'return a ruby object' do 
-      info = Information.info_comparas format: 'ruby'
+      info = Information.info_comparas response: 'ruby'
       assert_instance_of Hash, info
     end
 
@@ -61,12 +61,12 @@ class TestInformation < Test::Unit::TestCase
     end
 
     should 'return a json object' do 
-      info = Information.info_data format: 'json'
+      info = Information.info_data response: 'json'
       assert_nothing_raised { JSON.parse info }
     end
 
     should 'return a ruby object' do 
-      info = Information.info_data format: 'ruby'
+      info = Information.info_data response: 'ruby'
       assert_instance_of Hash, info
     end
 
@@ -81,12 +81,12 @@ class TestInformation < Test::Unit::TestCase
     end
 
     should 'return a json object' do 
-      info = Information.info_ping format: 'json'
+      info = Information.info_ping response: 'json'
       assert_nothing_raised { JSON.parse info }
     end
 
     should 'return a ruby object' do 
-      info = Information.info_ping format: 'ruby'
+      info = Information.info_ping response: 'ruby'
       assert_instance_of Hash, info
     end
 
@@ -101,12 +101,12 @@ class TestInformation < Test::Unit::TestCase
     end
 
     should 'return a json object' do 
-      info = Information.info_rest format: 'json'
+      info = Information.info_rest response: 'json'
       assert_nothing_raised { JSON.parse info }
     end
 
     should 'return a ruby object' do 
-      info = Information.info_rest format: 'ruby'
+      info = Information.info_rest response: 'ruby'
       assert_instance_of Hash, info
     end
 
@@ -121,12 +121,12 @@ class TestInformation < Test::Unit::TestCase
     end
 
     should 'return a json object' do 
-      info = Information.info_software format: 'json'
+      info = Information.info_software response: 'json'
       assert_nothing_raised { JSON.parse info }
     end
 
     should 'return a ruby object' do 
-      info = Information.info_software format: 'ruby'
+      info = Information.info_software response: 'ruby'
       assert_instance_of Hash, info
     end
 
@@ -141,7 +141,7 @@ class TestInformation < Test::Unit::TestCase
     end
 
     should 'return a json object' do 
-      info = Information.info_software format: 'json', division: 'ensembl'
+      info = Information.info_software response: 'json', division: 'ensembl'
       assert_nothing_raised { JSON.parse info }
     end
 

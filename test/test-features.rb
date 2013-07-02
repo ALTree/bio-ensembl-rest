@@ -10,32 +10,32 @@ class TestFeatures < Test::Unit::TestCase
     end
 
     should 'return a json object' do 
-      fts = Features.feature_id 'ENSG00000157764', %w(gene), format: 'json'
+      fts = Features.feature_id 'ENSG00000157764', %w(gene), response: 'json'
       assert_nothing_raised { JSON.parse fts }
     end
 
     should 'support multiple features' do 
       assert_nothing_raised do 
         Features.feature_id 'ENSG00000157764', %w(gene transcript exon), 
-          format: 'json'
+          response: 'json'
       end
     end
 
     should 'raise error if no feature is given' do 
       assert_raises RuntimeError do 
-        Features.feature_id 'ENSG00000157764', format: 'json'
+        Features.feature_id 'ENSG00000157764', response: 'json'
       end
     end
 
     should 'return a ruby objcted' do 
-      fts = Features.feature_id 'ENSG00000157764', %w(gene), format: 'ruby'
+      fts = Features.feature_id 'ENSG00000157764', %w(gene), response: 'ruby'
       assert_instance_of Array, fts 
     end
 
     should 'support a bunch of parameters' do 
       assert_nothing_raised do 
         Features.feature_id 'ENSG00000157764', %w(gene transcript cds exon),
-          format: 'xml',
+          response: 'xml',
           biotype: 'protein_coding',
           db_type: 'core',
           object_type: 'gene',
@@ -57,7 +57,7 @@ class TestFeatures < Test::Unit::TestCase
     should 'return a json object' do 
       fts = Features.feature_region 'human', '7:140424943-140624564',
               %w(gene), 
-              format: 'json'
+              response: 'json'
       assert_nothing_raised { JSON.parse fts }
     end
 
@@ -65,13 +65,13 @@ class TestFeatures < Test::Unit::TestCase
       assert_nothing_raised do 
         Features.feature_region 'human', '7:140424943-140624564',
           %w(variation constrained regulatory),
-          format: 'json'
+          response: 'json'
       end
     end
 
     should 'raise error if no feature is given' do 
       assert_raises RuntimeError do 
-        Features.feature_region 'human', '7:140424943-140624564', format: 'xml'
+        Features.feature_region 'human', '7:140424943-140624564', response: 'xml'
       end
     end
 
@@ -79,7 +79,7 @@ class TestFeatures < Test::Unit::TestCase
       assert_nothing_raised do 
         Features.feature_region 'human', '7:140424943-140624564',
           %w(gene transcript cds exon),
-          format: 'xml',
+          response: 'xml',
           biotype: 'protein_coding',
           db_type: 'core'
       end

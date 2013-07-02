@@ -16,12 +16,12 @@ class TestLookup < Test::Unit::TestCase
 
     should 'support the full parameter' do 
       look_plain = Lookup.lookup_id 'ENSG00000157764'
-      look_full = Lookup.lookup_id 'ENSG00000157764', full: true
+      look_full = Lookup.lookup_id 'ENSG00000157764', format: 'full'
       assert look_full.size > look_plain.size
     end
 
     should 'return the right object' do 
-      look = JSON.parse Lookup.lookup_id 'ENSG00000157764', full: true
+      look = JSON.parse Lookup.lookup_id 'ENSG00000157764', format: 'full'
       assert look['object_type'].casecmp 'gene'
       assert look['species'].casecmp 'homo_sapiens'
       assert look['start'] = 140424943

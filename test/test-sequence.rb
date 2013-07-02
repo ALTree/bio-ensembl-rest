@@ -18,26 +18,26 @@ class TestSequence < Test::Unit::TestCase
 
     should 'expand the sequence 10 pairs upstream' do
       seq1 = Sequence.sequence_id 'ENSE00001154485',
-              format: 'text',
+              response: 'text',
               type: 'genomic'
       seq2 = Sequence.sequence_id 'ENSE00001154485',
-              format: 'text',
+              response: 'text',
               type: 'genomic',
-              expand_up: 10
+              expand_5prime: 10
       assert_equal 10 + seq1.size, seq2.size
       assert_equal seq1, seq2[10..-1]
     end
 
     should 'return a Bio::Sequence object' do
       seq = Sequence.sequence_id 'ENSVPAG00000001567',
-              format: 'ruby'
+              response: 'ruby'
       assert_instance_of Bio::Sequence, seq
     end
 
     should 'raise an error: ID not found' do
       assert_raises RuntimeError do
         Sequence.sequence_id 'CCDS5863.1',
-          format: 'fasta',
+          response: 'fasta',
           object_type: 'transcript',
           db_type: 'otherfeatures',
           type: 'cds',
@@ -47,15 +47,15 @@ class TestSequence < Test::Unit::TestCase
 
     should 'return multiple sequences' do
       response = Sequence.sequence_id 'ENSG00000157764',
-                  format: 'fasta', 
-                  multiseq: true,
+                  response: 'fasta', 
+                  multiple_sequences: true,
                   type: 'protein'
       assert response.scan(/>\w{15,18}\n/).size > 1
     end
 
     should 'support json response' do
       seq = Sequence.sequence_id 'ENSG00000157764',
-              format: 'json'
+              response: 'json'
       assert_nothing_raised {JSON.parse(seq)}
     end
 
@@ -91,30 +91,30 @@ class TestSequence < Test::Unit::TestCase
       assert_nothing_raised do
         Sequence.sequence_region 'human', 
             'AADC01095577.1:1..100',
-            format: 'fasta',
-            coords: 'seqlevel'
+            response: 'fasta',
+            coords_system: 'seqlevel'
         end
     end
 
     should 'expand the sequence upstream and downstream' do
       seq = Sequence.sequence_region 'human',
               'X:1000000..1000100:1',
-              expand_up: 50,
-              expand_down: 50
+              expand_3prime: 50,
+              expand_5prime: 50
       assert_equal 201, seq.size
     end
 
     should 'support json response' do
       seq = Sequence.sequence_region 'human',
               'X:1000000..1000100:1',  
-              format: 'json'
+              response: 'json'
       assert_nothing_raised {JSON.parse(seq)}
     end
 
     should 'return a Bio::Sequence object' do
       seq = Sequence.sequence_region 'human',
               'X:1000000..1000100:1',
-              format: 'ruby'
+              response: 'ruby'
       assert_instance_of Bio::Sequence, seq
     end
 

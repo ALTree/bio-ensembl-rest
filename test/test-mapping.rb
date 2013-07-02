@@ -16,7 +16,7 @@ class TestMapping < Test::Unit::TestCase
 
     should 'return the right mapping' do 
       map = Mapping.map 'NCBI36', 'GRCh37', 'human', 'X:1000000..1000100:1', 
-              format: 'ruby'
+              response: 'ruby'
       from = map['mappings'][0]['original']
       to = map['mappings'][0]['mapped']
       assert from['start'] = 1000000
@@ -51,7 +51,7 @@ class TestMapping < Test::Unit::TestCase
 
     should 'return the right mapping' do 
       map = Mapping.map_from_cdna 'ENST00000288602', '100..300',
-              format: 'ruby'
+              response: 'ruby'
       from = map['mappings'][0]
       to = map['mappings'][1]
       from['seq_region_name'] = '7'
@@ -79,7 +79,7 @@ class TestMapping < Test::Unit::TestCase
 
     should 'return the right mapping' do 
       map = Mapping.map_from_region 'ENSP00000288602', '100..300',
-              format: 'ruby'
+              response: 'ruby'
       from = map['mappings'][0]
       to = map['mappings'][1]
       from['seq_region_name'] = '7'

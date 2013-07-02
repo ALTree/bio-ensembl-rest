@@ -78,7 +78,7 @@ class TestOntologies < Test::Unit::TestCase
     end
 
     should 'return a ruby object' do 
-      ont = Ontologies.ontology_id 'GO:0005667', format: 'ruby'
+      ont = Ontologies.ontology_id 'GO:0005667', response: 'ruby'
       assert_instance_of Hash, ont
     end
 
