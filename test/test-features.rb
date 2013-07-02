@@ -5,7 +5,7 @@ class TestFeatures < Test::Unit::TestCase
   context 'feature_id' do 
 
     setup do       
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
     end
 
@@ -50,7 +50,7 @@ class TestFeatures < Test::Unit::TestCase
   context 'feature_region' do 
 
     setup do       
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
     end
 

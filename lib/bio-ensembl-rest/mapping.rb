@@ -1,10 +1,10 @@
-module BioEnsemblRest
+module EnsemblRest
   module Mapping
 
     # GET map/:species/:asm_one/:region/:asm_two
     def self.map(asm_one, asm_two, species, region, opts = {})
-      opts = BioEnsemblRest.parse_options opts, 'mapping'
-      path = BioEnsemblRest.build_path "/map/#{species}/#{asm_one}/#{region}/#{asm_two}", opts
+      opts = EnsemblRest.parse_options opts, 'mapping'
+      path = EnsemblRest.build_path "/map/#{species}/#{asm_one}/#{region}/#{asm_two}", opts
 
       # TODO: ruby object?
       if opts['content-type'] == 'ruby'
@@ -13,7 +13,7 @@ module BioEnsemblRest
         return JSON.parse map asm_one, asm_two, species, region, plain_opts
       end
 
-      return BioEnsemblRest.fetch_data path, opts, 'mapping' 
+      return EnsemblRest.fetch_data path, opts, 'mapping' 
     end
 
 
@@ -34,8 +34,8 @@ module BioEnsemblRest
 
     # generic mapping form cdna and cds
     def self._map_generic(id, region, type, opts = {})
-      opts = BioEnsemblRest.parse_options opts, 'mapping'
-      path = BioEnsemblRest.build_path "/map/#{type}/#{id}/#{region}", opts
+      opts = EnsemblRest.parse_options opts, 'mapping'
+      path = EnsemblRest.build_path "/map/#{type}/#{id}/#{region}", opts
 
       # TODO: ruby object?
       if opts['content-type'] == 'ruby'
@@ -44,7 +44,7 @@ module BioEnsemblRest
         return JSON.parse _map_generic id, region, type, plain_opts
       end
 
-      return BioEnsemblRest.fetch_data path, opts, 'mapping'
+      return EnsemblRest.fetch_data path, opts, 'mapping'
     end
 
   end

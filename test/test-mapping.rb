@@ -5,7 +5,7 @@ class TestMapping < Test::Unit::TestCase
   context 'test map' do 
 
     setup do 
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
     end
 
@@ -40,7 +40,7 @@ class TestMapping < Test::Unit::TestCase
   context 'test map_from_cdna' do
 
     setup do 
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
     end
 
@@ -68,7 +68,7 @@ class TestMapping < Test::Unit::TestCase
   context 'test map_from_cdna' do
 
     setup do 
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
     end
 

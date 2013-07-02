@@ -1,4 +1,4 @@
-module BioEnsemblRest
+module EnsemblRest
   module Ontologies
 
     # GET ontology/ancestors/:id
@@ -22,7 +22,7 @@ module BioEnsemblRest
     end
 
     def self._ontology_id_generic(id, type, opts = {})
-      opts = BioEnsemblRest.parse_options opts, 'ontologies'
+      opts = EnsemblRest.parse_options opts, 'ontologies'
       case type 
       when 'ancestors_plain'
         url = "/ontology/ancestors/#{id}"
@@ -33,7 +33,7 @@ module BioEnsemblRest
       when 'plain'
         url = "/ontology/id/#{id}"
       end
-      path = BioEnsemblRest.build_path url, opts
+      path = EnsemblRest.build_path url, opts
 
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
@@ -41,14 +41,14 @@ module BioEnsemblRest
         return JSON.parse _ontology_id_generic id, type, plain_opts
       end
 
-      return BioEnsemblRest.fetch_data path, opts, 'ontologies'
+      return EnsemblRest.fetch_data path, opts, 'ontologies'
     end
 
 
     # GET ontology/name/:name
     def self.ontology_name(name, opts = {})
-      opts = BioEnsemblRest.parse_options opts, 'ontologies'
-      path = BioEnsemblRest.build_path "/ontology/name/#{name}", opts
+      opts = EnsemblRest.parse_options opts, 'ontologies'
+      path = EnsemblRest.build_path "/ontology/name/#{name}", opts
       
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
@@ -56,7 +56,7 @@ module BioEnsemblRest
         return JSON.parse ontology_name name, plain_opts
       end
 
-      return BioEnsemblRest.fetch_data path, opts, 'ontologies'
+      return EnsemblRest.fetch_data path, opts, 'ontologies'
     end
 
   end

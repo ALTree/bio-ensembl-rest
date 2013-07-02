@@ -1,4 +1,4 @@
-module BioEnsemblRest
+module EnsemblRest
 
   ## start HTTP database connection ##
 
@@ -154,6 +154,9 @@ module BioEnsemblRest
   end
 
   def self.fetch_data(path, opts, mod)
+    # what we should set as content-type in the header
+    # to keep ensembl happy when the the user does not
+    # use the format parameter to set the return type
     default_types = {
       'sequence' => 'text/plain',
       'compara' => 'text/xml',
@@ -168,7 +171,7 @@ module BioEnsemblRest
     }
     request = Net::HTTP::Get.new path
     request.content_type = opts['content-type'] || default_types[mod]
-    response = $HTTP_CONNECTION.request request # ask for data
+    response = $HTTP_CONNECTION.request request
     return check_response response
   end
 

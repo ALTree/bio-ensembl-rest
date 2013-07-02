@@ -5,7 +5,7 @@ class TestTaxonomy < Test::Unit::TestCase
   context 'test taxonomy_id' do 
 
     setup do 
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
     end
 
@@ -21,7 +21,7 @@ class TestTaxonomy < Test::Unit::TestCase
   context 'test taxonomy_name' do 
 
     setup do 
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
     end
 

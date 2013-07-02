@@ -1,4 +1,4 @@
-module BioEnsemblRest
+module EnsemblRest
   module Taxonomy
 
     # GET taxonomy/id/:id
@@ -12,8 +12,8 @@ module BioEnsemblRest
     end
 
     def self._taxonomy_generic(id, type, opts = {})
-      opts = BioEnsemblRest.parse_options opts, 'taxonomy'
-      path = BioEnsemblRest.build_path "/taxonomy/#{type}/#{id}", opts
+      opts = EnsemblRest.parse_options opts, 'taxonomy'
+      path = EnsemblRest.build_path "/taxonomy/#{type}/#{id}", opts
 
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
@@ -21,7 +21,7 @@ module BioEnsemblRest
         return JSON.parse _taxonomy_generic id, type, plain_opts
       end
 
-      return BioEnsemblRest.fetch_data path, opts, 'taxonomy'
+      return EnsemblRest.fetch_data path, opts, 'taxonomy'
     end
 
   end

@@ -5,7 +5,7 @@ class TestVariation < Test::Unit::TestCase
   context 'test vep_id' do 
 
     setup do 
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
     end
 
@@ -31,7 +31,7 @@ class TestVariation < Test::Unit::TestCase
   context 'test vep_region' do 
 
     setup do 
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
       require 'rexml/document'
     end

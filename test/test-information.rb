@@ -5,7 +5,7 @@ class TestInformation < Test::Unit::TestCase
   context 'assembly_info' do
 
     setup do 
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
     end
 
@@ -20,7 +20,7 @@ class TestInformation < Test::Unit::TestCase
   context 'assembly_info_region' do
 
     setup do 
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'rexml/document'
     end
 
@@ -36,7 +36,7 @@ class TestInformation < Test::Unit::TestCase
   context 'info_comparas' do
 
     setup do 
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
     end
 
@@ -56,7 +56,7 @@ class TestInformation < Test::Unit::TestCase
   context 'info_data' do
 
     setup do 
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
     end
 
@@ -76,7 +76,7 @@ class TestInformation < Test::Unit::TestCase
   context 'info_ping' do
 
     setup do 
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
     end
 
@@ -96,7 +96,7 @@ class TestInformation < Test::Unit::TestCase
   context 'info_rest' do
 
     setup do 
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
     end
 
@@ -116,7 +116,7 @@ class TestInformation < Test::Unit::TestCase
   context 'info_software' do
 
     setup do 
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
     end
 
@@ -136,7 +136,7 @@ class TestInformation < Test::Unit::TestCase
   context 'info_species' do
 
     setup do 
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
     end
 

@@ -5,7 +5,7 @@ class TestComparativeGenomics < Test::Unit::TestCase
   context 'genetree_id' do 
 
     setup do 
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'rexml/document'
     end
 
@@ -63,7 +63,7 @@ class TestComparativeGenomics < Test::Unit::TestCase
   context 'genetree_member_id' do 
 
     setup do 
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
     end
 
     should "work, that's all" do
@@ -84,7 +84,7 @@ class TestComparativeGenomics < Test::Unit::TestCase
   context 'genetree_member_symbol' do
 
     setup do 
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
     end
 
     should 'return a tree with the BRCA2 gene' do
@@ -115,7 +115,7 @@ class TestComparativeGenomics < Test::Unit::TestCase
   context 'homology_id' do 
 
     setup do
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
       require 'rexml/document'
     end
@@ -169,7 +169,7 @@ class TestComparativeGenomics < Test::Unit::TestCase
   context 'homology_symbol' do
 
     setup do
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
       require 'rexml/document'
     end

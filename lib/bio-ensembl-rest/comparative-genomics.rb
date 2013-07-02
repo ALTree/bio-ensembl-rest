@@ -1,4 +1,4 @@
-module BioEnsemblRest
+module EnsemblRest
   module ComparativeGenomics
 
     # GET genetree/id/:id 
@@ -13,9 +13,9 @@ module BioEnsemblRest
 
     # generic method used by genetree_id and genetree_member_id
     def self._genetree_generic(id, type, opts = {})
-      opts = BioEnsemblRest.parse_options opts, 'compara'
+      opts = EnsemblRest.parse_options opts, 'compara'
       url = type == 'id' ? "/genetree/id/#{id}" : "/genetree/member/id/#{id}"
-      path = BioEnsemblRest.build_path url, opts
+      path = EnsemblRest.build_path url, opts
 
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
@@ -23,14 +23,14 @@ module BioEnsemblRest
         return Bio::PhyloXML::Parser.new _genetree_generic id, type, plain_opts
       end
 
-      return BioEnsemblRest.fetch_data path, opts, 'compara'
+      return EnsemblRest.fetch_data path, opts, 'compara'
     end
 
 
     # GET genetree/member/symbol/:species/:symbol 
     def self.genetree_member_symbol(species, symbol, opts = {})
-      opts = BioEnsemblRest.parse_options opts, 'compara'
-      path = BioEnsemblRest.build_path "/genetree/member/symbol/#{species}/#{symbol}", opts
+      opts = EnsemblRest.parse_options opts, 'compara'
+      path = EnsemblRest.build_path "/genetree/member/symbol/#{species}/#{symbol}", opts
 
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
@@ -38,14 +38,14 @@ module BioEnsemblRest
         return Bio::PhyloXML::Parser.new genetree_member_symbol(species, symbol, plain_opts)
       end
 
-      return BioEnsemblRest.fetch_data path, opts, 'compara'
+      return EnsemblRest.fetch_data path, opts, 'compara'
     end
 
 
     # GET homology/id/:id 
     def self.homology_id(id, opts = {})
-      opts = BioEnsemblRest.parse_options opts, 'compara'
-      path = BioEnsemblRest.build_path "/homology/id/#{id}", opts
+      opts = EnsemblRest.parse_options opts, 'compara'
+      path = EnsemblRest.build_path "/homology/id/#{id}", opts
 
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
@@ -54,14 +54,14 @@ module BioEnsemblRest
         return build_homology_class data
       end
 
-      return BioEnsemblRest.fetch_data path, opts, 'compara'
+      return EnsemblRest.fetch_data path, opts, 'compara'
     end
 
 
     # GET homology/symbol/:species/:symbol 
     def self.homology_symbol(species, symbol, opts = {})
-      opts = BioEnsemblRest.parse_options opts, 'compara'
-      path = BioEnsemblRest.build_path "/homology/symbol/#{species}/#{symbol}", opts
+      opts = EnsemblRest.parse_options opts, 'compara'
+      path = EnsemblRest.build_path "/homology/symbol/#{species}/#{symbol}", opts
 
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
@@ -70,7 +70,7 @@ module BioEnsemblRest
         return build_homology_class data
       end
 
-      return BioEnsemblRest.fetch_data path, opts, 'compara'      
+      return EnsemblRest.fetch_data path, opts, 'compara'      
 
     end
 

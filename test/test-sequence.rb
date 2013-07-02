@@ -5,7 +5,7 @@ class TestSequence < Test::Unit::TestCase
   context 'sequence_id' do
     
     setup do
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
     end
 
@@ -76,7 +76,7 @@ class TestSequence < Test::Unit::TestCase
   context 'sequence_region' do
 
     setup do
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
     end
 

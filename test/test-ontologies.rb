@@ -5,7 +5,7 @@ class TestOntologies < Test::Unit::TestCase
   context 'test ontology_ancestor' do 
 
     setup do 
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
     end
 
@@ -22,7 +22,7 @@ class TestOntologies < Test::Unit::TestCase
   context 'test ontology_ancestor_chart' do 
 
     setup do 
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
     end
 
@@ -39,7 +39,7 @@ class TestOntologies < Test::Unit::TestCase
   context 'test ontology_descendants' do 
 
     setup do 
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
     end
 
@@ -65,7 +65,7 @@ class TestOntologies < Test::Unit::TestCase
   context 'test ontology_id' do 
 
     setup do 
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
     end
 
@@ -88,7 +88,7 @@ class TestOntologies < Test::Unit::TestCase
   context 'test ontology_name' do 
 
     setup do 
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
     end
 

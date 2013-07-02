@@ -5,7 +5,7 @@ class TestLookup < Test::Unit::TestCase
   context 'lookup_id' do 
 
     setup do 
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
     end
 

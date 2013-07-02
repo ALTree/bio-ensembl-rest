@@ -5,7 +5,7 @@ class TestCrossReference < Test::Unit::TestCase
   context 'xrefs_id' do 
 
     setup do       
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
     end
 
@@ -35,7 +35,7 @@ class TestCrossReference < Test::Unit::TestCase
   context 'xrefs_name' do
 
     setup do       
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'json'
     end
 
@@ -64,7 +64,7 @@ class TestCrossReference < Test::Unit::TestCase
   context 'xrefs_symbol' do
 
     setup do       
-      BioEnsemblRest.connect_db
+      EnsemblRest.connect_db
       require 'rexml/document'
     end
 
