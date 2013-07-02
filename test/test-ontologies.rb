@@ -46,7 +46,6 @@ class TestOntologies < Test::Unit::TestCase
     should 'work both with GO and EFO IDs' do
       go = Ontologies.ontology_descendents 'GO:0005667' 
       efo = Ontologies.ontology_descendents 'EFO:0000493'
-
       assert_nothing_raised { JSON.parse go }
       assert_nothing_raised { JSON.parse efo }
     end
@@ -92,9 +91,10 @@ class TestOntologies < Test::Unit::TestCase
       require 'json'
     end
 
-    should 'return a json object' do 
+    should 'return the right data' do 
       ont = Ontologies.ontology_name 'transcription factor complex'
       assert_nothing_raised { JSON.parse ont }
+      assert ont.index 'GO:0000120'
     end
 
   end

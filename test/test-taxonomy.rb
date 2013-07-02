@@ -9,6 +9,11 @@ class TestTaxonomy < Test::Unit::TestCase
       require 'json'
     end
 
+    should 'return the right data' do
+      data = Taxonomy.taxonomy_id '9606', response: 'ruby'
+      assert_equal "Homo sapiens", data['scientific_name']
+    end
+
     should 'work both with name and NBCI taxon id' do
       name = Taxonomy.taxonomy_id 'Homo sapiens'
       taxon_name = Taxonomy.taxonomy_id '9606'

@@ -27,13 +27,6 @@ class TestMapping < Test::Unit::TestCase
       assert to['assembly'] = 'GRCh37'
     end
 
-    should 'support the coord_system parameter' do 
-      assert_nothing_raised do 
-        Mapping.map 'NCBI36', 'GRCh37', 'human', 'X:1000000..1000100:1', 
-            coord_system: 'chromosome'      
-      end
-    end
-
   end
 
 

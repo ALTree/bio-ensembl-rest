@@ -69,9 +69,14 @@ class TestSequence < Test::Unit::TestCase
       assert_equal seq2[0..9].downcase, seq2[0..9]
     end
 
+    should 'return seqxml object' do
+      seq = Sequence.sequence_id 'ENSE00001154485',
+               response: 'seqxml'
+      assert seq.index 'seqXML'
+    end
+
   end
 
-  # TODO: aggiungi test con format: 'seqxml'
 
   context 'sequence_region' do
 
@@ -116,6 +121,7 @@ class TestSequence < Test::Unit::TestCase
               'X:1000000..1000100:1',
               response: 'ruby'
       assert_instance_of Bio::Sequence, seq
+      assert_equal 101, seq.to_s.size
     end
 
   end

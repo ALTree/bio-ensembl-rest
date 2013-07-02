@@ -10,27 +10,19 @@ class TestComparativeGenomics < Test::Unit::TestCase
     end
 
     should 'work with different nh tree formats' do
-      assert_nothing_raised do
-        ComparativeGenomics.genetree_id 'ENSGT00390000003602',
-          response: 'nh'
-        ComparativeGenomics.genetree_id 'ENSGT00390000003602',
-          response: 'nh',
-          nh_format: 'full'
-       ComparativeGenomics.genetree_id 'ENSGT00390000003602',
-          response: 'nh',
-          nh_format: 'ncbi_name'
-      end
+      tree1 = ComparativeGenomics.genetree_id 'ENSGT00390000003602',
+                response: 'nh',
+                nh_format: 'species_short_name'
+      tree2 = ComparativeGenomics.genetree_id 'ENSGT00390000003602',
+                response: 'nh',
+                nh_format: 'species'
+      assert tree1.size < tree2.size
     end
 
     should 'return phyloxml tree' do
       tree = ComparativeGenomics.genetree_id 'ENSGT00390000003602',
               response: 'phyloxml'
-      tree2 = ComparativeGenomics.genetree_id 'ENSGT00390000003602',
-                response: 'xml'
-      assert_nothing_raised do
-        REXML::Document.new tree
-        REXML::Document.new tree2
-        end      
+      assert_nothing_raised { REXML::Document.new tree }    
     end
 
     should 'return a Bio::PhyloXML object' do
@@ -39,23 +31,6 @@ class TestComparativeGenomics < Test::Unit::TestCase
       assert_instance_of Bio::PhyloXML::Parser, tree
     end
 
-    should 'work allow the aligned parameter' do
-      assert_nothing_raised do
-        ComparativeGenomics.genetree_id 'ENSGT00390000003602',
-          aligned: true
-      end
-    end
-
-    should 'work allow the sequence type option' do
-      assert_nothing_raised do
-        ComparativeGenomics.genetree_id 'ENSGT00390000003602',
-          sequence: 'none'
-        ComparativeGenomics.genetree_id 'ENSGT00390000003602',
-          sequence: 'cdna'
-        ComparativeGenomics.genetree_id 'ENSGT00390000003602',
-          sequence: 'protein'
-      end
-    end
 
   end
 
@@ -93,16 +68,6 @@ class TestComparativeGenomics < Test::Unit::TestCase
       assert tree.index('BRCA2')
     end
 
-    should 'work with all the options' do 
-      assert_nothing_raised do
-        tree = ComparativeGenomics.genetree_member_symbol 'homo_sapiens', 'BRCA2',
-                  response: 'nh',
-                  db_type: 'core',
-                  external_db: 'HGNC',
-                  object: 'gene'
-      end
-    end
-
     should 'return a Bio::PhyloXML object' do
       tree = ComparativeGenomics.genetree_member_symbol 'homo_sapiens', 'BRCA2',
               response: 'ruby' 
@@ -132,35 +97,16 @@ class TestComparativeGenomics < Test::Unit::TestCase
       assert_nothing_raised { REXML::Document.new hom }
     end
 
+    should 'support the sequence parameter' do 
+      hom = ComparativeGenomics.homology_id 'ENSG00000157764', sequence: 'none'
+      hom2 = ComparativeGenomics.homology_id 'ENSG00000157764', sequence: 'protein'
+      assert hom.size < hom2.size
+    end
+
     should 'return a list of Homology objects' do 
       homs = ComparativeGenomics.homology_id 'ENSG00000157764', 
               response: 'ruby'
       homs.each { |hom| assert_instance_of Homology, hom }
-    end
-
-    should 'support the compara parameter' do
-      assert_nothing_raised do 
-        ComparativeGenomics.homology_id 'ENSG00000157764', compara: 'multi' 
-      end   
-    end
-
-    should 'support condensed and type parameters' do 
-      assert_nothing_raised do 
-        ComparativeGenomics.homology_id 'ENSG00000157764',
-          response: 'json',
-          format: 'condensed',
-          type: 'orthologues'
-      end
-    end
-
-    should 'support target species and taxon parameters' do 
-      assert_nothing_raised do 
-        ComparativeGenomics.homology_id 'ENSG00000157764',
-          response: 'json',
-          target_taxon: 10090,
-          target_species: 'cow',
-          sequence: 'cdna'
-      end
     end
 
     should 'support the aligned parameter' do
@@ -186,35 +132,10 @@ class TestComparativeGenomics < Test::Unit::TestCase
       assert_nothing_raised { JSON.parse hom }
     end
 
-    should 'return a xml object' do
-      hom = ComparativeGenomics.homology_symbol 'human', 'BRCA2',
-              response: 'xml'      
-      assert_nothing_raised { REXML::Document.new hom }
-    end
-
     should 'return a list of Homology objects' do 
       homs = ComparativeGenomics.homology_symbol 'human', 'BRCA2', 
               response: 'ruby'
       homs.each { |hom| assert_instance_of Homology, hom }
-    end
-
-    should 'support condensed and type parameters' do 
-      assert_nothing_raised do 
-        ComparativeGenomics.homology_symbol 'human', 'BRCA2',
-          response: 'json',
-          format: 'condensed',
-          type: 'orthologues'
-      end
-    end
-
-    should 'support target species and taxon parameters' do 
-      assert_nothing_raised do 
-        ComparativeGenomics.homology_symbol 'human', 'BRCA2',
-          response: 'json',
-          target_taxon: 10090,
-          target_species: 'cow',
-          sequence: 'cdna'
-      end
     end
 
   end

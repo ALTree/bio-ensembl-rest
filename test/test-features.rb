@@ -9,10 +9,12 @@ class TestFeatures < Test::Unit::TestCase
       require 'json'
     end
 
-    should 'return a json object' do 
+    should 'return the right data' do 
       fts = Features.feature_id 'ENSG00000157764', %w(gene), response: 'json'
       assert_nothing_raised { JSON.parse fts }
+      assert fts.index 'BRAF'
     end
+
 
     should 'support multiple features' do 
       assert_nothing_raised do 
@@ -27,22 +29,11 @@ class TestFeatures < Test::Unit::TestCase
       end
     end
 
-    should 'return a ruby objcted' do 
+    should 'return a ruby object' do 
       fts = Features.feature_id 'ENSG00000157764', %w(gene), response: 'ruby'
       assert_instance_of Array, fts 
     end
 
-    should 'support a bunch of parameters' do 
-      assert_nothing_raised do 
-        Features.feature_id 'ENSG00000157764', %w(gene transcript cds exon),
-          response: 'xml',
-          biotype: 'protein_coding',
-          db_type: 'core',
-          object_type: 'gene',
-          species: 'homo_sapiens'
-      end
-
-    end
 
   end
 
@@ -54,11 +45,12 @@ class TestFeatures < Test::Unit::TestCase
       require 'json'
     end
 
-    should 'return a json object' do 
+    should 'return the right data' do 
       fts = Features.feature_region 'human', '7:140424943-140624564',
               %w(gene), 
               response: 'json'
       assert_nothing_raised { JSON.parse fts }
+      assert fts.index 'BRAF'
     end
 
     should 'support multiple features' do 
@@ -75,17 +67,8 @@ class TestFeatures < Test::Unit::TestCase
       end
     end
 
-    should 'support a bunch of parameters' do 
-      assert_nothing_raised do 
-        Features.feature_region 'human', '7:140424943-140624564',
-          %w(gene transcript cds exon),
-          response: 'xml',
-          biotype: 'protein_coding',
-          db_type: 'core'
-      end
-    end
 
   end
 
 
-  end
+end

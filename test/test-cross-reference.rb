@@ -9,24 +9,15 @@ class TestCrossReference < Test::Unit::TestCase
       require 'json'
     end
 
-    should 'return a JSON object' do
+    should 'return the right data' do
       refs = CrossReference.xrefs_id 'ENSG00000157764', response: 'json'
       assert_nothing_raised { JSON.parse refs }
+      assert refs.index 'OTTHUMG00000157457'
     end
 
     should 'return a ruby array' do
       refs = CrossReference.xrefs_id 'ENSG00000157764', response: 'ruby'
       assert_instance_of Array, refs
-    end
-
-    should 'work with various parameters' do
-      assert_nothing_raised do
-        CrossReference.xrefs_id 'ENST00000288602',
-          response: 'xml',
-          external_db: 'PDB',
-          db_type: 'core',
-          all_levels: true
-        end
     end
 
   end
@@ -49,13 +40,9 @@ class TestCrossReference < Test::Unit::TestCase
       assert_instance_of Array, refs
     end
 
-    should 'work with various parameters' do
-      assert_nothing_raised do
-        CrossReference.xrefs_name 'human', 'BRCA2',
-          response: 'xml',
-          external_db: 'PDB',
-          db_type: 'otherfeatures'
-        end
+    should 'return the right data' do 
+      refs = CrossReference.xrefs_name 'human', 'BRCA2', response: 'ruby' 
+      assert refs.each {|r| r['display_id'] == 'BRCA2'}    
     end
 
   end
