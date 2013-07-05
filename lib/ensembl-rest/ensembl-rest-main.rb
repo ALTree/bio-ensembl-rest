@@ -69,8 +69,8 @@ module EnsemblRest
     default_types = {
       'sequence' => 'text/plain',
       'compara' => 'text/xml',
-      'crossreference' => 'text/plain',
-      'features' => 'text/plain',
+      'crossreference' => 'application/json',
+      'features' => 'application/json',
       'information' => 'text/plain',
       'lookup' => 'application/json',
       'mapping' => 'application/json',
