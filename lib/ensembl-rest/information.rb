@@ -51,7 +51,7 @@ module EnsemblRest
 
     ##
     # Shows the data releases available on this REST server
-     def self.info_data(opts = {})
+    def self.info_data(opts = {})
       opts = EnsemblRest.parse_options opts
       path = EnsemblRest.build_path "/info/comparas", opts
 

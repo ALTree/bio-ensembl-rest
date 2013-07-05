@@ -19,10 +19,10 @@ class TestComparativeGenomics < Test::Unit::TestCase
       assert tree1.size < tree2.size
     end
 
-    should 'return phyloxml tree' do
+    should 'return the right data' do
       tree = ComparativeGenomics.genetree_id 'ENSGT00390000003602',
-              response: 'phyloxml'
-      assert_nothing_raised { REXML::Document.new tree }    
+              response: 'xml'
+      assert tree.index('Euteleostomi') && tree.index('Sarcopterygii')
     end
 
     should 'return a Bio::PhyloXML object' do
@@ -41,10 +41,9 @@ class TestComparativeGenomics < Test::Unit::TestCase
       EnsemblRest.connect_db
     end
 
-    should "work, that's all" do
-      assert_nothing_raised do
-        ComparativeGenomics.genetree_member_id 'ENSG00000157764'
-      end
+    should "return the right data" do
+      tree = ComparativeGenomics.genetree_member_id'ENSG00000157764', response: 'xml'
+      assert tree.index('Bilateria')
     end
 
     should 'return a Bio::PhyloXML object' do
@@ -66,12 +65,6 @@ class TestComparativeGenomics < Test::Unit::TestCase
       tree = ComparativeGenomics.genetree_member_symbol 'homo_sapiens', 'BRCA2',
               response: 'phyloxml'
       assert tree.index('BRCA2')
-    end
-
-    should 'return a Bio::PhyloXML object' do
-      tree = ComparativeGenomics.genetree_member_symbol 'homo_sapiens', 'BRCA2',
-              response: 'ruby' 
-      assert_instance_of Bio::PhyloXML::Parser, tree
     end
 
   end
