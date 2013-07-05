@@ -134,7 +134,7 @@ class TestInformation < Test::Unit::TestCase
     end
 
     should 'return a json object' do 
-      info = Information.info_software response: 'json', division: 'ensembl'
+      info = Information.info_species response: 'json', division: 'ensembl'
       assert_nothing_raised { JSON.parse info }
     end
 

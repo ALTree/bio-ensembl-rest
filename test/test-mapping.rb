@@ -55,20 +55,33 @@ class TestMapping < Test::Unit::TestCase
 
   end
 
+  context 'test map_from_cds' do
 
-  context 'test map_from_cdna' do
+    setup do 
+      EnsemblRest.connect_db
+    end  
+
+    should 'return a json object' do 
+      map = Mapping.map_from_cds 'ENST00000288602', '1..1000'
+      assert_nothing_raised { JSON.parse map }
+    end
+
+  end
+
+
+  context 'test map_from_translation' do
 
     setup do 
       EnsemblRest.connect_db
     end
 
     should 'return a json object' do 
-      map = Mapping.map_from_region 'ENSP00000288602', '100..300'
+      map = Mapping.map_from_translation 'ENSP00000288602', '100..300'
       assert_nothing_raised { JSON.parse map }
     end
 
     should 'return the right mapping' do 
-      map = Mapping.map_from_region 'ENSP00000288602', '100..300',
+      map = Mapping.map_from_translation 'ENSP00000288602', '100..300',
               response: 'ruby'
       from = map['mappings'][0]
       to = map['mappings'][1]

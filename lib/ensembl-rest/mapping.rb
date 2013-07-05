@@ -32,7 +32,7 @@ module EnsemblRest
 
     ##
     # Convert from protein (translation) coordinates to genomic coordinates
-    def self.map_from_region(id, region, opts = {})
+    def self.map_from_translation(id, region, opts = {})
       return _map_generic id, region, 'translation', opts
     end
 

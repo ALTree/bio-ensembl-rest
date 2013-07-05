@@ -62,6 +62,7 @@ module EnsemblRest
     URI::encode path
   end
 
+  # TODO: add tests to check if this default stuff is ok
   def self.fetch_data(path, opts, mod) # :nodoc:
     # what we should set as content-type in the header
     # to keep ensembl happy when the the user does not
@@ -71,7 +72,7 @@ module EnsemblRest
       'compara' => 'text/xml',
       'crossreference' => 'application/json',
       'features' => 'application/json',
-      'information' => 'text/plain',
+      'information' => 'application/json',
       'lookup' => 'application/json',
       'mapping' => 'application/json',
       'ontologies' => 'application/json',

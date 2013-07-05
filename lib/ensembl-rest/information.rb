@@ -53,7 +53,7 @@ module EnsemblRest
     # Shows the data releases available on this REST server
     def self.info_data(opts = {})
       opts = EnsemblRest.parse_options opts
-      path = EnsemblRest.build_path "/info/comparas", opts
+      path = EnsemblRest.build_path "/info/data", opts
 
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
@@ -69,7 +69,7 @@ module EnsemblRest
     # Pings the first available DBAdaptor to see if the service is still active
     def self.info_ping(opts = {})
       opts = EnsemblRest.parse_options opts
-      path = EnsemblRest.build_path "/info/comparas", opts
+      path = EnsemblRest.build_path "/info/ping", opts
 
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
@@ -85,7 +85,7 @@ module EnsemblRest
     # Shows the current version of the REST API
      def self.info_rest(opts = {})
       opts = EnsemblRest.parse_options opts
-      path = EnsemblRest.build_path "/info/comparas", opts
+      path = EnsemblRest.build_path "/info/rest", opts
 
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
@@ -101,7 +101,7 @@ module EnsemblRest
     # Shows the current version of the Ensembl API
      def self.info_software(opts = {})
       opts = EnsemblRest.parse_options opts
-      path = EnsemblRest.build_path "/info/comparas", opts
+      path = EnsemblRest.build_path "/info/software", opts
 
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
@@ -117,7 +117,7 @@ module EnsemblRest
     # Lists all available species, their aliases, available adaptor groups and data release
      def self.info_species(opts = {})
       opts = EnsemblRest.parse_options opts
-      path = EnsemblRest.build_path "/info/comparas", opts
+      path = EnsemblRest.build_path "/info/species", opts
 
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
