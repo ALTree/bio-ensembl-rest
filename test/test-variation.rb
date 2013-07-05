@@ -6,7 +6,6 @@ class TestVariation < Test::Unit::TestCase
 
     setup do 
       EnsemblRest.connect_db
-      require 'json'
     end
 
     should 'support diffent IDs systems' do 
@@ -32,7 +31,6 @@ class TestVariation < Test::Unit::TestCase
 
     setup do 
       EnsemblRest.connect_db
-      require 'json'
       require 'rexml/document'
     end
 

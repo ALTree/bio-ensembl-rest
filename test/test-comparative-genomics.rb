@@ -74,7 +74,6 @@ class TestComparativeGenomics < Test::Unit::TestCase
 
     setup do
       EnsemblRest.connect_db
-      require 'json'
       require 'rexml/document'
     end
 
@@ -115,7 +114,6 @@ class TestComparativeGenomics < Test::Unit::TestCase
 
     setup do
       EnsemblRest.connect_db
-      require 'json'
       require 'rexml/document'
     end
 

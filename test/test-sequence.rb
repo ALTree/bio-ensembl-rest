@@ -6,7 +6,6 @@ class TestSequence < Test::Unit::TestCase
     
     setup do
       EnsemblRest.connect_db
-      require 'json'
     end
 
     should 'return the correct string' do
@@ -82,7 +81,6 @@ class TestSequence < Test::Unit::TestCase
 
     setup do
       EnsemblRest.connect_db
-      require 'json'
     end
 
     should 'return the correct string' do

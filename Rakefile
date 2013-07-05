@@ -14,9 +14,9 @@ require 'rake'
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "bio-ensembl-rest"
+  gem.name = "ensembl-rest"
   gem.version = '0.0.1'
-  gem.homepage = "http://github.com/ALTree/bioruby-ensembl-rest"
+  gem.homepage = "http://github.com/ALTree/ensembl-rest"
   gem.license = "MIT"
   gem.summary = "Ruby Ensembl REST api"
   gem.description = "A BioGem for the RESTful Ensembl API"

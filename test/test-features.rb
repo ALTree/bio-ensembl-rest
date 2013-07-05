@@ -6,7 +6,6 @@ class TestFeatures < Test::Unit::TestCase
 
     setup do       
       EnsemblRest.connect_db
-      require 'json'
     end
 
     should 'return the right data' do 
@@ -42,7 +41,6 @@ class TestFeatures < Test::Unit::TestCase
 
     setup do       
       EnsemblRest.connect_db
-      require 'json'
     end
 
     should 'return the right data' do 

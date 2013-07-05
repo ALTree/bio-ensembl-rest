@@ -1,5 +1,4 @@
 module EnsemblRest 
-
   ## start HTTP database connection ##
 
   def self.connect_db 

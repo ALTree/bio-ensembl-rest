@@ -6,7 +6,6 @@ class TestMapping < Test::Unit::TestCase
 
     setup do 
       EnsemblRest.connect_db
-      require 'json'
     end
 
     should 'return a json object' do 
@@ -34,7 +33,6 @@ class TestMapping < Test::Unit::TestCase
 
     setup do 
       EnsemblRest.connect_db
-      require 'json'
     end
 
     should 'return a json object' do 
@@ -62,7 +60,6 @@ class TestMapping < Test::Unit::TestCase
 
     setup do 
       EnsemblRest.connect_db
-      require 'json'
     end
 
     should 'return a json object' do 

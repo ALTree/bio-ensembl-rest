@@ -6,7 +6,6 @@ class TestInformation < Test::Unit::TestCase
 
     setup do 
       EnsemblRest.connect_db
-      require 'json'
     end
 
     should 'return a json object' do 
@@ -37,7 +36,6 @@ class TestInformation < Test::Unit::TestCase
 
     setup do 
       EnsemblRest.connect_db
-      require 'json'
     end
 
     should 'return a json object' do 
@@ -57,7 +55,6 @@ class TestInformation < Test::Unit::TestCase
 
     setup do 
       EnsemblRest.connect_db
-      require 'json'
     end
 
     should 'return a json object' do 
@@ -77,7 +74,6 @@ class TestInformation < Test::Unit::TestCase
 
     setup do 
       EnsemblRest.connect_db
-      require 'json'
     end
 
     should 'return a json object' do 
@@ -97,7 +93,6 @@ class TestInformation < Test::Unit::TestCase
 
     setup do 
       EnsemblRest.connect_db
-      require 'json'
     end
 
     should 'return a json object' do 
@@ -117,7 +112,6 @@ class TestInformation < Test::Unit::TestCase
 
     setup do 
       EnsemblRest.connect_db
-      require 'json'
     end
 
     should 'return a json object' do 
@@ -137,7 +131,6 @@ class TestInformation < Test::Unit::TestCase
 
     setup do 
       EnsemblRest.connect_db
-      require 'json'
     end
 
     should 'return a json object' do 

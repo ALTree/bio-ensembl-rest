@@ -6,7 +6,6 @@ class TestTaxonomy < Test::Unit::TestCase
 
     setup do 
       EnsemblRest.connect_db
-      require 'json'
     end
 
     should 'return the right data' do
@@ -27,7 +26,6 @@ class TestTaxonomy < Test::Unit::TestCase
 
     setup do 
       EnsemblRest.connect_db
-      require 'json'
     end
 
     should 'work both with name and NBCI taxon id' do

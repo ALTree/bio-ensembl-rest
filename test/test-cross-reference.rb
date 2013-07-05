@@ -6,7 +6,6 @@ class TestCrossReference < Test::Unit::TestCase
 
     setup do       
       EnsemblRest.connect_db
-      require 'json'
     end
 
     should 'return the right data' do
@@ -27,7 +26,6 @@ class TestCrossReference < Test::Unit::TestCase
 
     setup do       
       EnsemblRest.connect_db
-      require 'json'
     end
 
     should 'return a JSON object' do
