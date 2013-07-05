@@ -8,10 +8,11 @@ class TestFeatures < Test::Unit::TestCase
       EnsemblRest.connect_db
     end
 
-    should 'return the right data' do 
-      fts = Features.feature_id 'ENSG00000157764', %w(gene), response: 'json'
-      assert_nothing_raised { JSON.parse fts }
-      assert fts.index 'BRAF'
+    should 'support a basic call and return the correct data' do
+      fts = Features.feature_id 'ENSG00000157764', %w(gene)
+      assert fts.index 'ENSG00000157764'      # gene ID
+      assert fts.index '140424943'            # gene starts here
+      assert fts.index '140624564'            # gene end here
     end
 
 
@@ -33,7 +34,6 @@ class TestFeatures < Test::Unit::TestCase
       assert_instance_of Array, fts 
     end
 
-
   end
 
 
@@ -43,12 +43,13 @@ class TestFeatures < Test::Unit::TestCase
       EnsemblRest.connect_db
     end
 
-    should 'return the right data' do 
-      fts = Features.feature_region 'human', '7:140424943-140624564',
-              %w(gene), 
-              response: 'json'
+    should 'support a basic call and return the correct data' do
+      fts = Features.feature_region 'human', '7:140424943-140624564', %w(gene)
       assert_nothing_raised { JSON.parse fts }
-      assert fts.index 'BRAF'
+      assert fts.index 'ENSG00000157764'   # gene ID
+      assert fts.index 'BRAF'              # gene name
+      assert fts.index '140424943'         # gene starts here
+      assert fts.index '140624564'         # gene end here
     end
 
     should 'support multiple features' do 
