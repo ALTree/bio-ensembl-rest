@@ -12,7 +12,7 @@ gem install ensembl-rest
 or, for the latest dev version
 ```sh
 git clone git://github.com/ALTree/ensembl-rest
-cd ensemb-rest
+cd ensembl-rest
 bundle install && rake install
 ```
 
@@ -46,5 +46,3 @@ See the [ensembl-rest wiki page](https://github.com/ALTree/bio-ensembl-rest/wiki
 * On jruby, methods in the ComparativeGenomics module fail if called with `response: ruby`,
 due to a C dependency in the 'bio' gem.
 
-
-Copyright (c) 2013 Alberto Donizetti. See LICENSE.txt for further details.

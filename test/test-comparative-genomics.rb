@@ -6,10 +6,14 @@ class TestComparativeGenomics < Test::Unit::TestCase
 
     setup do 
       EnsemblRest.connect_db
-      require 'rexml/document'
     end
 
-    should 'work with different nh tree formats' do
+    should 'support a basic call and return the correct data' do
+      tree = ComparativeGenomics.genetree_id 'ENSGT00390000003602'
+      assert tree.index('Euteleostomi') && tree.index('Sarcopterygii')
+    end
+
+    should 'work with nh response type' do
       tree1 = ComparativeGenomics.genetree_id 'ENSGT00390000003602',
                 response: 'nh',
                 nh_format: 'species_short_name'
@@ -17,12 +21,8 @@ class TestComparativeGenomics < Test::Unit::TestCase
                 response: 'nh',
                 nh_format: 'species'
       assert tree1.size < tree2.size
-    end
-
-    should 'return the right data' do
-      tree = ComparativeGenomics.genetree_id 'ENSGT00390000003602',
-              response: 'xml'
-      assert tree.index('Euteleostomi') && tree.index('Sarcopterygii')
+      assert tree1.index 'Xmac'
+      assert tree2.index 'xiphophorus_maculatus'
     end
 
     should 'return a Bio::PhyloXML object' do
@@ -41,9 +41,9 @@ class TestComparativeGenomics < Test::Unit::TestCase
       EnsemblRest.connect_db
     end
 
-    should "return the right data" do
-      tree = ComparativeGenomics.genetree_member_id'ENSG00000157764', response: 'xml'
-      assert tree.index('Bilateria')
+    should 'support a basic call and return the correct data' do
+      tree = ComparativeGenomics.genetree_member_id 'ENSG00000157764'
+      assert tree.index('Petromyzon marinus')
     end
 
     should 'return a Bio::PhyloXML object' do
@@ -61,9 +61,8 @@ class TestComparativeGenomics < Test::Unit::TestCase
       EnsemblRest.connect_db
     end
 
-    should 'return a tree with the BRCA2 gene' do
-      tree = ComparativeGenomics.genetree_member_symbol 'homo_sapiens', 'BRCA2',
-              response: 'phyloxml'
+    should 'support a basic call and return the correct data' do
+      tree = ComparativeGenomics.genetree_member_symbol 'homo_sapiens', 'BRCA2'
       assert tree.index('BRCA2')
     end
 
@@ -75,6 +74,13 @@ class TestComparativeGenomics < Test::Unit::TestCase
     setup do
       EnsemblRest.connect_db
       require 'rexml/document'
+    end
+
+    should 'support a basic call and return the correct data' do
+      hom = ComparativeGenomics.homology_id 'ENSG00000157764'
+      assert hom.index 'Bilateria'
+      assert hom.index 'ENSG00000157764'
+      assert hom.index 'ENSG00000173327'
     end
 
     should 'return a json object' do
@@ -99,6 +105,9 @@ class TestComparativeGenomics < Test::Unit::TestCase
       homs = ComparativeGenomics.homology_id 'ENSG00000157764', 
               response: 'ruby'
       homs.each { |hom| assert_instance_of Homology, hom }
+      homs.each do |hom|
+        hom.bio_methods.each {|met| assert hom.respond_to? met}
+      end
     end
 
     should 'support the aligned parameter' do
@@ -117,16 +126,20 @@ class TestComparativeGenomics < Test::Unit::TestCase
       require 'rexml/document'
     end
 
-    should 'return a json object' do
-      hom = ComparativeGenomics.homology_symbol 'human', 'BRCA2',
-              response: 'json'
-      assert_nothing_raised { JSON.parse hom }
+    should 'support a basic call and return the correct data' do
+      hom = ComparativeGenomics.homology_symbol 'human', 'BRCA2'
+      assert hom.index 'Homininae'
+      assert hom.index 'ENSG00000139618'
     end
+
 
     should 'return a list of Homology objects' do 
       homs = ComparativeGenomics.homology_symbol 'human', 'BRCA2', 
               response: 'ruby'
       homs.each { |hom| assert_instance_of Homology, hom }
+      homs.each do |hom|
+        hom.bio_methods.each {|met| assert hom.respond_to? met}
+      end
     end
 
   end
