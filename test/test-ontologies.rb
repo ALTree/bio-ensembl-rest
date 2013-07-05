@@ -8,11 +8,19 @@ class TestOntologies < Test::Unit::TestCase
       EnsemblRest.connect_db
     end
 
+    should 'support a basic call and return the correct data' do
+      ont = Ontologies.ontology_ancestor 'GO:0005667'
+      assert ont.index 'GO:0000120'       # GO:000566 should have this ancestor
+      assert ont.index 'GO:0000126'       # and this 
+      assert ont.index 'GO:0000127'       # and this
+      assert ont.index 'GO:0097221'       # and this one, too
+    end
+
     should 'work both with GO and EFO IDs' do
-      go = Ontologies.ontology_ancestor 'GO:0005667' 
-      efo = Ontologies.ontology_ancestor 'EFO:0000493'
-      assert_nothing_raised { JSON.parse go }
-      assert_nothing_raised { JSON.parse efo }
+      assert_nothing_raised do
+        Ontologies.ontology_ancestor 'GO:0005667' 
+        Ontologies.ontology_ancestor 'EFO:0000493'
+      end
     end
 
   end
@@ -24,11 +32,12 @@ class TestOntologies < Test::Unit::TestCase
       EnsemblRest.connect_db
     end
 
-    should 'work both with GO and EFO IDs' do
-      go = Ontologies.ontology_ancestor_chart 'GO:0005667' 
-      efo = Ontologies.ontology_ancestor_chart 'EFO:0000493'
-      assert_nothing_raised { JSON.parse go }
-      assert_nothing_raised { JSON.parse efo }
+    should 'support a basic call and return the correct data' do
+      ont = Ontologies.ontology_ancestor_chart 'GO:0005667'
+      assert ont.index 'GO:0005575'       # GO:0005667 should have this ancestor
+      assert ont.index 'GO:0005622'       # and this 
+      assert ont.index 'GO:0005623'       # and this
+      assert ont.index 'GO:0005654'       # and this one, too
     end
 
   end
@@ -40,19 +49,18 @@ class TestOntologies < Test::Unit::TestCase
       EnsemblRest.connect_db
     end
 
-    should 'work both with GO and EFO IDs' do
-      go = Ontologies.ontology_descendents 'GO:0005667' 
-      efo = Ontologies.ontology_descendents 'EFO:0000493'
-      assert_nothing_raised { JSON.parse go }
-      assert_nothing_raised { JSON.parse efo }
+    should 'support a basic call and return the correct data' do
+      ont = Ontologies.ontology_descendents 'GO:0005667'
+      assert ont.index 'GO:0043234'       # GO:0005667 should have this descendent
+      assert ont.index 'GO:0044451'       # and this 
+      assert ont.index 'GO:0005654'       # and this
+      assert ont.index 'GO:0043231'       # and this one, too
     end
 
-    should 'support various distance parameters' do 
-      assert_nothing_raised do 
-        Ontologies.ontology_descendents 'GO:0005667', closest_term: true
-        Ontologies.ontology_descendents 'GO:0005667', zero_distance: true
-        Ontologies.ontology_descendents 'GO:0005667', subset: 'goslim_generic'
-      end
+    should 'support the subset parameter' do 
+      ont1 = Ontologies.ontology_descendents 'GO:0005667', subset: 'goslim_generic'
+      ont2 = Ontologies.ontology_descendents 'GO:0005667'
+      assert ont1.size < ont2.size
     end
 
   end
@@ -64,12 +72,11 @@ class TestOntologies < Test::Unit::TestCase
       EnsemblRest.connect_db
     end
 
-    should 'work both with GO and EFO IDs' do
-      go = Ontologies.ontology_id 'GO:0005667' 
-      efo = Ontologies.ontology_id 'EFO:0000493'
-
-      assert_nothing_raised { JSON.parse go }
-      assert_nothing_raised { JSON.parse efo }
+    should 'support a basic call and return the correct data' do
+      ont = Ontologies.ontology_id 'GO:0005667'
+      assert ont.index 'transcription factor complex'    # what GO:0005667 is
+      assert ont.index 'GO:0000120'                      # a son of him
+      assert ont.index 'GO:0044451'                      # his parent
     end
 
     should 'return a ruby object' do 
@@ -86,10 +93,11 @@ class TestOntologies < Test::Unit::TestCase
       EnsemblRest.connect_db
     end
 
-    should 'return the right data' do 
+    should 'support a basic call and return the correct data' do
       ont = Ontologies.ontology_name 'transcription factor complex'
-      assert_nothing_raised { JSON.parse ont }
-      assert ont.index 'GO:0000120'
+      assert ont.index 'GO:0005667'       # ID of transcription factor complex
+      assert ont.index 'GO:0000120'       # a son of him
+      assert ont.index 'GO:0044451'       # his parent
     end
 
   end
