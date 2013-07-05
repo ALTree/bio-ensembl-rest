@@ -8,9 +8,11 @@ class TestInformation < Test::Unit::TestCase
       EnsemblRest.connect_db
     end
 
-    should 'return a json object' do 
-      info = Information.assembly_info 'homo_sapiens', response: 'json'
-      assert_nothing_raised { JSON.parse info }
+    should 'support a basic call and return the correct data' do
+      info = Information.assembly_info 'homo_sapiens'
+      assert info =~ /GRCh\d{2}/       # check for GRC assembly code  
+      assert info.index 'X'            # check for X chromosome
+      assert info.index 'Y'            # check for Y chromosome
     end
 
   end
@@ -20,13 +22,12 @@ class TestInformation < Test::Unit::TestCase
 
     setup do 
       EnsemblRest.connect_db
-      require 'rexml/document'
     end
 
-    should 'return a xml object' do 
-      info = Information.assembly_info_region 'homo_sapiens', 'X',
-                response: 'xml'
-      assert_nothing_raised { REXML::Document.new info }
+    should 'support a basic call and return the correct data' do
+      info = Information.assembly_info_region 'homo_sapiens', 'X'
+      assert info.index '155270560'         # the length of the X chromosome
+      assert info.index 'chromosome'        # coordinate_system should be this
     end
 
   end
@@ -38,14 +39,11 @@ class TestInformation < Test::Unit::TestCase
       EnsemblRest.connect_db
     end
 
-    should 'return a json object' do 
-      info = Information.info_comparas response: 'json'
-      assert_nothing_raised { JSON.parse info }
-    end
-
-    should 'return a ruby object' do 
-      info = Information.info_comparas response: 'ruby'
-      assert_instance_of Hash, info
+    should 'support a basic call and return the correct data' do
+      info = Information.info_comparas
+      assert info.index 'comparas'         
+      assert info.index 'name'         # we expect at least name and release 
+      assert info.index 'release'      # number of the databases
     end
 
   end
@@ -57,14 +55,9 @@ class TestInformation < Test::Unit::TestCase
       EnsemblRest.connect_db
     end
 
-    should 'return a json object' do 
-      info = Information.info_data response: 'json'
-      assert_nothing_raised { JSON.parse info }
-    end
-
-    should 'return a ruby object' do 
-      info = Information.info_data response: 'ruby'
-      assert_instance_of Hash, info
+    should 'support a basic call and return the correct data' do
+      info = Information.info_data       
+      assert info.index 'releases'         # we expect a release number
     end
 
   end
@@ -76,14 +69,10 @@ class TestInformation < Test::Unit::TestCase
       EnsemblRest.connect_db
     end
 
-    should 'return a json object' do 
-      info = Information.info_ping response: 'json'
-      assert_nothing_raised { JSON.parse info }
-    end
-
-    should 'return a ruby object' do 
-      info = Information.info_ping response: 'ruby'
-      assert_instance_of Hash, info
+    should 'support a basic call and return the correct data' do
+      info = Information.info_ping       
+      assert info.index 'ping'
+      assert info.index '1'            # so we know the server is alive
     end
 
   end
@@ -95,14 +84,9 @@ class TestInformation < Test::Unit::TestCase
       EnsemblRest.connect_db
     end
 
-    should 'return a json object' do 
-      info = Information.info_rest response: 'json'
-      assert_nothing_raised { JSON.parse info }
-    end
-
-    should 'return a ruby object' do 
-      info = Information.info_rest response: 'ruby'
-      assert_instance_of Hash, info
+    should 'support a basic call and return the correct data' do
+      info = Information.info_rest      
+      assert info.index 'release'            # we expect a release number
     end
 
   end
@@ -114,14 +98,9 @@ class TestInformation < Test::Unit::TestCase
       EnsemblRest.connect_db
     end
 
-    should 'return a json object' do 
-      info = Information.info_software response: 'json'
-      assert_nothing_raised { JSON.parse info }
-    end
-
-    should 'return a ruby object' do 
-      info = Information.info_software response: 'ruby'
-      assert_instance_of Hash, info
+    should 'support a basic call and return the correct data' do
+      info = Information.info_software      
+      assert info.index 'release'            # we expect a release number
     end
 
   end
@@ -133,9 +112,10 @@ class TestInformation < Test::Unit::TestCase
       EnsemblRest.connect_db
     end
 
-    should 'return a json object' do 
-      info = Information.info_species response: 'json', division: 'ensembl'
-      assert_nothing_raised { JSON.parse info }
+    should 'support a basic call and return the correct data' do
+      info = Information.info_species division: 'ensembl'      
+      assert info.index 'saccharomyces_cerevisiae'   # yeast! everyone has that
+      assert info.index 'vicugna pacos'              # ALPACA! everyone loves them
     end
 
   end
