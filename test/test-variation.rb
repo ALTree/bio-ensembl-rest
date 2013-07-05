@@ -8,11 +8,10 @@ class TestVariation < Test::Unit::TestCase
       EnsemblRest.connect_db
     end
 
-    should 'support diffent IDs systems' do 
-      assert_nothing_raised do 
-        JSON.parse Variation.vep_id 'COSM476', 'human'
-        JSON.parse Variation.vep_id 'rs116035550', 'human'
-      end
+    should 'support a basic call and return the correct data' do 
+      var = Variation.vep_id 'COSM476', 'human'
+      assert var.index '7'           # variation we asked for is on chromosome 7
+      assert var.index '140453136'   # and starts here
     end
 
     should 'return the correct data' do 
@@ -22,6 +21,12 @@ class TestVariation < Test::Unit::TestCase
       assert var['is_somatic'] == 1
       assert var['location']['start'] = 140453136
       assert var['location']['end'] = 140453136
+    end
+
+    should 'support rs ID' do
+      var = Variation.vep_id 'rs116035550', 'human'
+      assert var.index '11'           # variation we asked for is on chromosome 11
+      assert var.index '212464'       # and starts here
     end
 
   end
@@ -34,11 +39,11 @@ class TestVariation < Test::Unit::TestCase
       require 'rexml/document'
     end
 
-    should 'return a json object' do 
-      assert_nothing_raised do 
-        JSON.parse Variation.vep_region 'C', '9:22125503-22125502:1', 'human' 
-        JSON.parse Variation.vep_region 'T', '1:6524705:6524705', 'Homo Sapiens'
-      end
+    should 'support a basic call and return the correct data' do 
+      var = Variation.vep_region 'C', '9:22125503-22125502:1', 'human' 
+      assert var.index '9'           # variation we asked for is on chromosome 7
+      assert var.index '2125503'     # starts here
+      assert var.index '22125502'    # and ends here
     end
 
     should 'return an xml object' do 
