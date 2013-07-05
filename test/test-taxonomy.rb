@@ -8,9 +8,11 @@ class TestTaxonomy < Test::Unit::TestCase
       EnsemblRest.connect_db
     end
 
-    should 'return the right data' do
-      data = Taxonomy.taxonomy_id '9606', response: 'ruby'
-      assert_equal "Homo sapiens", data['scientific_name']
+    should 'support a basic call and return the correct data' do
+      tax = Taxonomy.taxonomy_id '9606'
+      assert tax.index 'Homo sapiens'           # the species with ID 9606
+      assert tax.index 'Neandertal'             # one if his sons
+      assert tax.index '63221'                  # neandertal has this ID
     end
 
     should 'work both with name and NBCI taxon id' do
@@ -22,10 +24,18 @@ class TestTaxonomy < Test::Unit::TestCase
   end
 
 
-  context 'test taxonomy_name' do 
+  context 'test taxonomy_classification' do 
 
     setup do 
       EnsemblRest.connect_db
+    end
+
+    should 'support a basic call and return the correct data' do
+      tax = Taxonomy.taxonomy_classification 'Homo'
+      assert tax.index '9605'           # the ID of Homo
+      assert tax.index 'Homo sapiens'   # one of his children
+      assert tax.index '9606'           # has this ID
+      assert tax.index 'man'            # and this common name
     end
 
     should 'work both with name and NBCI taxon id' do
