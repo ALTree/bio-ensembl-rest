@@ -8,22 +8,25 @@ class TestMapping < Test::Unit::TestCase
       EnsemblRest.connect_db
     end
 
-    should 'return a json object' do 
+    should 'support a basic call and return the correct data' do
       map = Mapping.map 'NCBI36', 'GRCh37', 'human', 'X:1000000..1000100:1'
-      assert_nothing_raised { JSON.parse map }
+      assert map.index 'NCBI36'            # we asked a map from this
+      assert map.index 'GRCh37'            # to this
+      assert map.index 'X'                 # of a sequence on the X chromosome
     end
 
-    should 'return the right mapping' do 
+    should 'return work with response: ruby' do 
       map = Mapping.map 'NCBI36', 'GRCh37', 'human', 'X:1000000..1000100:1', 
               response: 'ruby'
-      from = map['mappings'][0]['original']
-      to = map['mappings'][0]['mapped']
-      assert from['start'] = 1000000
-      assert from['end'] = 1000100
-      assert from['assembly'] = 'NCBI36'
-      assert to['start'] = 1080000
-      assert to['end'] = 1080100
-      assert to['assembly'] = 'GRCh37'
+      from = map['mappings'][0]['original']         # from here
+      to = map['mappings'][0]['mapped']             # to here
+
+      assert from['assembly'] = 'NCBI36'            # from has to be NCBI36
+      assert from['start'] = 1000000                # its region start here
+      assert from['end'] = 1000100                  # and ends here
+      assert to['assembly'] = 'GRCh37'              # to has to be GRCh37
+      assert to['start'] = 1080000                  # its region starts here
+      assert to['end'] = 1080100                    # and ends here
     end
 
   end
@@ -35,9 +38,11 @@ class TestMapping < Test::Unit::TestCase
       EnsemblRest.connect_db
     end
 
-    should 'return a json object' do 
+    should 'support a basic call and return the correct data' do 
       map = Mapping.map_from_cdna 'ENST00000288602', '100..300'
-      assert_nothing_raised { JSON.parse map }
+      assert map.index 'chromosome'        # we asked a map on chromosome
+      assert map.index '7'                 # chromosome 7, in fact
+      assert map.index '-1'                # strand -1
     end
 
     should 'return the right mapping' do 
@@ -61,9 +66,12 @@ class TestMapping < Test::Unit::TestCase
       EnsemblRest.connect_db
     end  
 
-    should 'return a json object' do 
+    should 'support a basic call and return the correct data' do 
       map = Mapping.map_from_cds 'ENST00000288602', '1..1000'
-      assert_nothing_raised { JSON.parse map }
+      assert map.index '7'                 # we asked for stuff on chromosome 7
+      assert map.index '-1'                # strand -1
+      assert map.index '140624366'         # one of the mapping starts here
+      assert map.index '140624503'         # and ends here
     end
 
   end
@@ -75,22 +83,12 @@ class TestMapping < Test::Unit::TestCase
       EnsemblRest.connect_db
     end
 
-    should 'return a json object' do 
+    should 'support a basic call and return the correct data' do 
       map = Mapping.map_from_translation 'ENSP00000288602', '100..300'
-      assert_nothing_raised { JSON.parse map }
-    end
-
-    should 'return the right mapping' do 
-      map = Mapping.map_from_translation 'ENSP00000288602', '100..300',
-              response: 'ruby'
-      from = map['mappings'][0]
-      to = map['mappings'][1]
-      from['seq_region_name'] = '7'
-      from['start'] = 140534409
-      to['end'] = 140534615
-      from['seq_region_name'] = '7'
-      from['start'] = 140508692
-      to['end'] = 140508795 
+      assert map.index '7'                 # we asked for stuff on chromosome 7
+      assert map.index '-1'                # strand -1
+      assert map.index '140534409'         # one of the mapping starts here
+      assert map.index '140534615'         # and ends here
     end
 
   end

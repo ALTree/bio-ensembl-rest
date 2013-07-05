@@ -8,9 +8,12 @@ class TestLookup < Test::Unit::TestCase
       EnsemblRest.connect_db
     end
 
-    should 'return a json object' do
+    should 'support a basic call and return the correct data' do
       look = Lookup.lookup_id 'ENSG00000157764'
-      assert_nothing_raised { JSON.parse look }
+      assert look.index 'Gene'                # we asked for a gene
+      assert look.index 'core'                # db_type should be this
+      assert look.index 'homo_sapiens'        # we used a human stable ID  
+      assert look.index 'ENSG00000157764'     # exactly this one
     end
 
     should 'support the full parameter' do 
