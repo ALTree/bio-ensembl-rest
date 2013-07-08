@@ -43,6 +43,9 @@ See the [ensembl-rest wiki page](https://github.com/ALTree/bio-ensembl-rest/wiki
 
 ### version-specific issues
 
-* On jruby, methods in the ComparativeGenomics module fail if called with `response: ruby`,
+* On jruby-1.7, methods in the ComparativeGenomics module fail if called with `response: ruby`,
+due to a C dependency in the 'bio' gem.
+
+* On rubinius, methods in the ComparativeGenomics module fail if called with `response: ruby`,
 due to a C dependency in the 'bio' gem.
 
