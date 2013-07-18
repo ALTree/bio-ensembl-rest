@@ -1,4 +1,4 @@
-require_relative 'helper'
+  require_relative 'helper'
 
 class TestTaxonomy < Test::Unit::TestCase
 
@@ -16,9 +16,10 @@ class TestTaxonomy < Test::Unit::TestCase
     end
 
     should 'work both with name and NBCI taxon id' do
-      name = Taxonomy.taxonomy_id 'Homo sapiens'
-      taxon_name = Taxonomy.taxonomy_id '9606'
-      assert_equal name, taxon_name
+      assert_nothing_raised do 
+        Taxonomy.taxonomy_id 'Homo sapiens'
+        Taxonomy.taxonomy_id '9606'
+      end
     end
 
   end
@@ -39,9 +40,10 @@ class TestTaxonomy < Test::Unit::TestCase
     end
 
     should 'work both with name and NBCI taxon id' do
-      name = Taxonomy.taxonomy_classification 'Homo sapiens'
-      taxon_name = Taxonomy.taxonomy_classification '9606'
-      assert_equal name, taxon_name
+      assert_nothing_raised do 
+        Taxonomy.taxonomy_classification 'Homo sapiens'
+        Taxonomy.taxonomy_classification '9606'
+      end
     end
 
   end
