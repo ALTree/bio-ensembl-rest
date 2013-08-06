@@ -29,6 +29,8 @@ class TestMapping < Test::Unit::TestCase
       assert to['end'] = 1080100                    # and ends here
     end
 
+    sleep(1)
+
   end
 
 
@@ -58,6 +60,8 @@ class TestMapping < Test::Unit::TestCase
       to['end'] = 140550012 
     end
 
+    sleep(1)
+
   end
 
   context 'test map_from_cds' do
@@ -73,6 +77,8 @@ class TestMapping < Test::Unit::TestCase
       assert map.index '140624366'         # one of the mapping starts here
       assert map.index '140624503'         # and ends here
     end
+
+    sleep(1)
 
   end
 
@@ -90,6 +96,8 @@ class TestMapping < Test::Unit::TestCase
       assert map.index '140534409'         # one of the mapping starts here
       assert map.index '140534615'         # and ends here
     end
+
+    sleep(1)
 
   end
 

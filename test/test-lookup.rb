@@ -35,6 +35,8 @@ class TestLookup < Test::Unit::TestCase
       assert look['db_type'] = 'core'
     end
 
+    sleep(1)
+
   end
 
 

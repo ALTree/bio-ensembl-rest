@@ -23,6 +23,8 @@ class TestOntologies < Test::Unit::TestCase
       end
     end
 
+    sleep(1)
+
   end
 
 
@@ -39,6 +41,8 @@ class TestOntologies < Test::Unit::TestCase
       assert ont.index 'GO:0005623'       # and this
       assert ont.index 'GO:0005654'       # and this one, too
     end
+
+    sleep(1)
 
   end
 
@@ -63,6 +67,8 @@ class TestOntologies < Test::Unit::TestCase
       assert ont1.size < ont2.size
     end
 
+    sleep(1)
+
   end
 
 
@@ -84,6 +90,8 @@ class TestOntologies < Test::Unit::TestCase
       assert_instance_of Hash, ont
     end
 
+    sleep(1)
+
   end
 
 
@@ -99,6 +107,8 @@ class TestOntologies < Test::Unit::TestCase
       assert ont.index 'GO:0000120'       # a son of him
       assert ont.index 'GO:0044451'       # his parent
     end
+
+    sleep(1)
 
   end
 

@@ -23,6 +23,8 @@ class TestCrossReference < Test::Unit::TestCase
       assert_instance_of Array, refs
     end
 
+    sleep(1)
+
   end
 
 
@@ -49,6 +51,8 @@ class TestCrossReference < Test::Unit::TestCase
       assert_instance_of Array, refs
     end
 
+    sleep(1)
+
   end
 
 
@@ -69,6 +73,8 @@ class TestCrossReference < Test::Unit::TestCase
       refs = CrossReference.xrefs_symbol 'homo_sapiens', 'BRCA2', response: 'xml'
       assert_nothing_raised { REXML::Document.new refs }
     end
+
+    sleep(1)
 
   end
 

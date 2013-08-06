@@ -31,6 +31,7 @@ class TestComparativeGenomics < Test::Unit::TestCase
       assert_instance_of Bio::PhyloXML::Parser, tree
     end
 
+    sleep(1)
 
   end
 
@@ -52,6 +53,8 @@ class TestComparativeGenomics < Test::Unit::TestCase
       assert_instance_of Bio::PhyloXML::Parser, tree
     end
 
+    sleep(1)
+
   end
 
 
@@ -65,6 +68,8 @@ class TestComparativeGenomics < Test::Unit::TestCase
       tree = ComparativeGenomics.genetree_member_symbol 'homo_sapiens', 'BRCA2'
       assert tree.index('BRCA2')
     end
+
+    sleep(1)
 
   end
 
@@ -116,6 +121,8 @@ class TestComparativeGenomics < Test::Unit::TestCase
       assert al.size > nal.size
     end
 
+    sleep(1)
+
   end
   
 
@@ -141,6 +148,8 @@ class TestComparativeGenomics < Test::Unit::TestCase
         hom.bio_methods.each {|met| assert hom.respond_to? met}
       end
     end
+
+    sleep(1)
 
   end
 

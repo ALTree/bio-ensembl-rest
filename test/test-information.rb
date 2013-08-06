@@ -15,6 +15,8 @@ class TestInformation < Test::Unit::TestCase
       assert info.index 'Y'            # check for Y chromosome
     end
 
+    sleep(1)
+
   end
 
 
@@ -60,6 +62,8 @@ class TestInformation < Test::Unit::TestCase
       assert info.index 'releases'         # we expect a release number
     end
 
+    sleep(1)
+
   end
 
 
@@ -102,6 +106,8 @@ class TestInformation < Test::Unit::TestCase
       info = Information.info_software      
       assert info.index 'release'            # we expect a release number
     end
+
+    sleep(1)
 
   end
 

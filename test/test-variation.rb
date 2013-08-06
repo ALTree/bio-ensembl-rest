@@ -29,6 +29,8 @@ class TestVariation < Test::Unit::TestCase
       assert var.index '212464'       # and starts here
     end
 
+    sleep(1)
+
   end
 
 
@@ -51,6 +53,8 @@ class TestVariation < Test::Unit::TestCase
               response: 'xml'
       assert_nothing_raised { REXML::Document.new var }
     end
+
+    sleep(1)
 
   end
 

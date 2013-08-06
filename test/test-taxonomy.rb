@@ -22,6 +22,8 @@ class TestTaxonomy < Test::Unit::TestCase
       end
     end
 
+    sleep(1)
+
   end
 
 
@@ -45,6 +47,8 @@ class TestTaxonomy < Test::Unit::TestCase
         Taxonomy.taxonomy_classification '9606'
       end
     end
+
+    sleep(1)
 
   end
 

@@ -34,6 +34,8 @@ class TestFeatures < Test::Unit::TestCase
       assert_instance_of Array, fts 
     end
 
+    sleep(1)
+
   end
 
 
@@ -66,6 +68,7 @@ class TestFeatures < Test::Unit::TestCase
       end
     end
 
+    sleep(1)
 
   end
 

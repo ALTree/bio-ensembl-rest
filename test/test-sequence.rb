@@ -27,6 +27,8 @@ class TestSequence < Test::Unit::TestCase
       assert_equal seq1, seq2[10..-1]
     end
 
+    sleep(1)
+
     should 'return a Bio::Sequence object' do
       seq = Sequence.sequence_id 'ENSVPAG00000001567',
               response: 'ruby'
@@ -51,6 +53,8 @@ class TestSequence < Test::Unit::TestCase
                   type: 'protein'
       assert response.scan(/>\w{15,18}\n/).size > 1
     end
+
+    sleep(1)
 
     should 'return masked sequences' do
       seq1 = Sequence.sequence_id 'ENST00000288602', 
@@ -83,6 +87,8 @@ class TestSequence < Test::Unit::TestCase
               expand_5prime: 50
       assert_equal 201, seq.size
     end
+
+    sleep(1)
 
     should 'support json response' do
       seq = Sequence.sequence_region 'human',
