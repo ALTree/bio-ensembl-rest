@@ -14,12 +14,12 @@ require 'rake'
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "ensembl-rest"
-  gem.version = '0.0.1'
+  gem.name = "bio-ensembl-rest"
+  gem.version = '0.1.0'
   gem.homepage = "http://github.com/ALTree/ensembl-rest"
   gem.license = "MIT"
   gem.summary = "Ruby Ensembl REST api"
-  gem.description = "A BioGem for the RESTful Ensembl API"
+  gem.description = "A Ruby library for the RESTful Ensembl API."
   gem.email = "alb.donizetti@gmail.com"
   gem.authors = ["Alberto Donizetti"]
   # dependencies defined in Gemfile
@@ -34,11 +34,6 @@ Rake::TestTask.new(:test) do |test|
 end
 
 task :default => :test
-
-
-task :jtest do
-	Dir.glob('test/*.rb').each { |file| ruby file }
-end
 
 require 'rdoc/task'
 Rake::RDocTask.new do |rdoc|
