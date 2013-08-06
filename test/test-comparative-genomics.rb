@@ -106,6 +106,8 @@ class TestComparativeGenomics < Test::Unit::TestCase
       assert hom.size < hom2.size
     end
 
+    sleep(1)
+
     should 'return a list of Homology objects' do 
       homs = ComparativeGenomics.homology_id 'ENSG00000157764', 
               response: 'ruby'

@@ -22,6 +22,8 @@ class TestLookup < Test::Unit::TestCase
       assert look_full.size > look_plain.size
     end
 
+    sleep(1)
+
     should 'return the right object' do 
       look = JSON.parse Lookup.lookup_id 'ENSG00000157764', format: 'full'
       assert look['object_type'].casecmp 'gene'
