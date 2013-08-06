@@ -9,7 +9,7 @@ Obtaining
 ```sh
 gem install ensembl-rest
 ```
-or, for the latest dev version
+or, for the latest version
 ```sh
 git clone git://github.com/ALTree/ensembl-rest
 cd ensembl-rest
