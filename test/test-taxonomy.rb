@@ -41,6 +41,8 @@ class TestTaxonomy < Test::Unit::TestCase
       assert tax.index 'man'            # and this common name
     end
 
+    sleep(1)
+
     should 'work both with name and NBCI taxon id' do
       assert_nothing_raised do 
         Taxonomy.taxonomy_classification 'Homo sapiens'

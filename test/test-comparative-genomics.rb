@@ -13,6 +13,8 @@ class TestComparativeGenomics < Test::Unit::TestCase
       assert tree.index('Euteleostomi') && tree.index('Sarcopterygii')
     end
 
+    sleep(1)
+
     should 'work with nh response type' do
       tree1 = ComparativeGenomics.genetree_id 'ENSGT00390000003602',
                 response: 'nh',
@@ -24,6 +26,8 @@ class TestComparativeGenomics < Test::Unit::TestCase
       assert tree1.index 'Xmac'
       assert tree2.index 'xiphophorus_maculatus'
     end
+
+    sleep(1)
 
     should 'return a Bio::PhyloXML object' do
       tree = ComparativeGenomics.genetree_id 'ENSGT00390000003602',
@@ -93,6 +97,8 @@ class TestComparativeGenomics < Test::Unit::TestCase
               response: 'json'
       assert_nothing_raised { JSON.parse hom }
     end
+
+    sleep(1)
 
     should 'return a xml object' do
       hom = ComparativeGenomics.homology_id 'ENSG00000157764',

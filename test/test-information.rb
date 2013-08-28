@@ -81,6 +81,8 @@ class TestInformation < Test::Unit::TestCase
       assert info.index '1'            # so we know the server is alive
     end
 
+    sleep(1)
+
   end
 
 

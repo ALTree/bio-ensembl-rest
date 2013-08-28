@@ -61,6 +61,8 @@ class TestOntologies < Test::Unit::TestCase
       assert ont.index 'GO:0043231'       # and this one, too
     end
 
+    sleep(1)
+
     should 'support the subset parameter' do 
       ont1 = Ontologies.ontology_descendents 'GO:0005667', subset: 'goslim_generic'
       ont2 = Ontologies.ontology_descendents 'GO:0005667'
@@ -84,6 +86,8 @@ class TestOntologies < Test::Unit::TestCase
       assert ont.index 'GO:0000120'                      # a son of him
       assert ont.index 'GO:0044451'                      # his parent
     end
+
+    sleep(1)
 
     should 'return a ruby object' do 
       ont = Ontologies.ontology_id 'GO:0005667', response: 'ruby'

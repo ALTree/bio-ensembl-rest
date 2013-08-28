@@ -48,6 +48,8 @@ class TestSequence < Test::Unit::TestCase
         end
     end
 
+    sleep(1)
+
     should 'return multiple sequences' do
       response = Sequence.sequence_id 'ENSG00000157764',
                   response: 'fasta', 
@@ -98,6 +100,8 @@ class TestSequence < Test::Unit::TestCase
               response: 'json'
       assert_nothing_raised { JSON.parse seq }
     end
+
+    sleep(1)
 
     should 'return a Bio::Sequence object' do
       seq = Sequence.sequence_region 'human',

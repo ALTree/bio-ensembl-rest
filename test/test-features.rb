@@ -56,6 +56,8 @@ class TestFeatures < Test::Unit::TestCase
       assert fts.index '140624564'         # gene end here
     end
 
+    sleep(1)
+
     should 'support multiple features' do 
       assert_nothing_raised do 
         Features.feature_region 'human', '7:140424943-140624564',

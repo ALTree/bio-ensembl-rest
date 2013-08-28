@@ -41,6 +41,8 @@ class TestCrossReference < Test::Unit::TestCase
       assert ref.index 'BROVCA2'
     end
 
+    sleep(1)
+
     should 'return a JSON object' do
       refs = CrossReference.xrefs_name 'human', 'BRCA2', response: 'json'
       assert_nothing_raised { JSON.parse refs }

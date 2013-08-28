@@ -14,6 +14,8 @@ class TestVariation < Test::Unit::TestCase
       assert var.index '140453136'   # and starts here
     end
 
+    sleep(1)
+
     should 'return the correct data' do 
       data = JSON.parse Variation.vep_id 'COSM476', 'human'
       var = data['data'].first
