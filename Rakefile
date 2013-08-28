@@ -13,9 +13,9 @@ require 'rake'
 
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
-  gem.name = "ensembl-rest"
+  gem.name = "bio-ensembl-rest"
   gem.version = '0.1.0'
-  gem.homepage = "http://github.com/ALTree/ensembl-rest"
+  gem.homepage = "http://github.com/ALTree/bio-ensembl-rest"
   gem.license = "MIT"
   gem.summary = "Ruby Ensembl REST api"
   gem.description = "A Ruby library for the RESTful Ensembl API."
