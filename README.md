@@ -3,13 +3,13 @@ Ensembl Rest
 
 A Ruby library for the RESTful Ensembl API.
 
-[![Build Status](https://api.travis-ci.org/ALTree/ensembl-rest.png)](https://travis-ci.org/ALTree/ensembl-rest)
+[![Build Status](https://api.travis-ci.org/ALTree/bio-ensembl-rest.png)](https://travis-ci.org/ALTree/bio-ensembl-rest)
 
 Obtaining
 ---------
 
 ```sh
-gem install ensembl-rest
+gem install bio-ensembl-rest
 ```
 for the repository:
 ```sh
