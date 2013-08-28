@@ -13,6 +13,4 @@ group :development do
   gem "rdoc", "~> 3.12"
   gem "bundler", "~> 1.3.5"
   gem "jeweler", "~> 1.8.4"
-  gem "bio", ">= 1.4.3"
-  gem "rdoc", "~> 3.12"
 end

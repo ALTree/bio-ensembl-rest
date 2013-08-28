@@ -11,11 +11,9 @@ Obtaining
 ```sh
 gem install ensembl-rest
 ```
-or, for the latest version
+for the repository:
 ```sh
-git clone git://github.com/ALTree/ensembl-rest
-cd ensembl-rest
-bundle install && rake install
+git clone git://github.com/ALTree/bio-ensembl-rest
 ```
 
 Usage
@@ -28,7 +26,7 @@ Each of the endpoint group listed in the Ensembl REST [documentation](http://bet
 To make a request to an endpoint, use the appropriate method in the relative module. For example, to access the `sequence/region/:species/:region ` endpoint in the Sequence group, use the `sequence_region` method in the `Sequence` module:
 
 ```ruby
-require 'ensembl-rest'
+require 'bio-ensembl-rest'
 include EnsemblRest
 
 EnsemblRest.connect_db # connect to database
