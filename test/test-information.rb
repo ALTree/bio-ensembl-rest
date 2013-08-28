@@ -48,6 +48,8 @@ class TestInformation < Test::Unit::TestCase
       assert info.index 'release'      # number of the databases
     end
 
+    sleep(1)
+
   end
 
 
@@ -92,6 +94,8 @@ class TestInformation < Test::Unit::TestCase
       info = Information.info_rest      
       assert info.index 'release'            # we expect a release number
     end
+
+    sleep(1)
 
   end
 

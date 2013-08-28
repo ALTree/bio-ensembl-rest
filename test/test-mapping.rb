@@ -47,6 +47,8 @@ class TestMapping < Test::Unit::TestCase
       assert map.index '-1'                # strand -1
     end
 
+    sleep(1)
+
     should 'return the right mapping' do 
       map = Mapping.map_from_cdna 'ENST00000288602', '100..300',
               response: 'ruby'

@@ -23,6 +23,8 @@ class TestFeatures < Test::Unit::TestCase
       end
     end
 
+    sleep(1)
+
     should 'raise error if no feature is given' do 
       assert_raises RuntimeError do 
         Features.feature_id 'ENSG00000157764', response: 'json'

@@ -15,6 +15,8 @@ class TestSequence < Test::Unit::TestCase
       assert_equal seq2.size, 18
     end
 
+    sleep(1)
+
     should 'expand the sequence 10 pairs upstream' do
       seq1 = Sequence.sequence_id 'ENSE00001154485',
               response: 'text',

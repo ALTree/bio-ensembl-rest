@@ -16,6 +16,8 @@ class TestLookup < Test::Unit::TestCase
       assert look.index 'ENSG00000157764'     # exactly this one
     end
 
+    sleep(1)
+
     should 'support the full parameter' do 
       look_plain = Lookup.lookup_id 'ENSG00000157764'
       look_full = Lookup.lookup_id 'ENSG00000157764', format: 'full'
