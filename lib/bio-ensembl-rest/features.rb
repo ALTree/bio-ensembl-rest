@@ -42,5 +42,22 @@ module EnsemblRest
       return EnsemblRest.fetch_data path, opts, 'features'   
     end
 
+    ##
+    # Uses the given identifier to return translation related features.
+    def self.feature_translation(id, opts = {})
+      opts = EnsemblRest.parse_options opts
+      path = EnsemblRest.build_path "/feature/translation/#{id}", opts
+
+      if opts['content-type'] == 'ruby'
+        plain_opts = opts.clone
+        plain_opts['content-type'] = 'application/json'
+        return JSON.parse feature_translation id, plain_opts
+       end 
+
+       return EnsemblRest.fetch_data path, opts, 'features'
+
+    end
+
   end
+
 end

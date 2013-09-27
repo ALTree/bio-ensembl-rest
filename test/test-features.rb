@@ -76,5 +76,18 @@ class TestFeatures < Test::Unit::TestCase
 
   end
 
+  context 'feature_translation' do
+
+    setup do
+      EnsemblRest.connect_db
+    end
+
+    should 'support a basic call and return the correct data' do 
+      ft = Features.feature_translation 'ENSP00000288602'
+      assert ft.index('SSF56112')
+    end
+
+  end
+
 
 end
