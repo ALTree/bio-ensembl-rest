@@ -14,7 +14,7 @@ require 'rake'
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   gem.name = "bio-ensembl-rest"
-  gem.version = '0.1.0'
+  gem.version = '0.2.0'
   gem.homepage = "http://github.com/ALTree/bio-ensembl-rest"
   gem.license = "MIT"
   gem.summary = "Ruby Ensembl REST api"
