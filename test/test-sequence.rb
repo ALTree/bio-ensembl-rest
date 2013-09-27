@@ -37,17 +37,6 @@ class TestSequence < Test::Unit::TestCase
       assert_instance_of Bio::Sequence, seq
     end
 
-    should 'raise an error: ID not found' do
-      assert_raises RuntimeError do
-        Sequence.sequence_id 'CCDS5863.1',
-          response: 'fasta',
-          object_type: 'transcript',
-          db_type: 'otherfeatures',
-          type: 'cds',
-          species: 'human'
-        end
-    end
-
     sleep(1)
 
     should 'return multiple sequences' do
