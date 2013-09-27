@@ -32,6 +32,8 @@ class TestInformation < Test::Unit::TestCase
       assert info.index 'chromosome'        # coordinate_system should be this
     end
 
+    sleep(1)
+
   end
 
   context 'info_analysis' do
@@ -45,6 +47,8 @@ class TestInformation < Test::Unit::TestCase
         info = Information.info_analysis 'homo sapiens'
       end     
     end
+
+    sleep(1)
 
   end
 
@@ -60,6 +64,8 @@ class TestInformation < Test::Unit::TestCase
       end     
     end
 
+    sleep(1)
+
   end
 
   context 'info_compara_methods' do
@@ -74,6 +80,8 @@ class TestInformation < Test::Unit::TestCase
       end     
     end
 
+    sleep(1)
+
   end
 
   context 'info_compara_species_sets_method' do
@@ -87,6 +95,8 @@ class TestInformation < Test::Unit::TestCase
         info = Information.info_compara_species_sets_method 'EPO'
       end     
     end
+
+    sleep(1)
 
   end
 
