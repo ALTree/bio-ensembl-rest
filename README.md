@@ -4,6 +4,7 @@ Ensembl Rest
 A Ruby library for the RESTful Ensembl API.
 
 [![Build Status](https://api.travis-ci.org/ALTree/bio-ensembl-rest.png)](https://travis-ci.org/ALTree/bio-ensembl-rest)
+[![Gem Version](https://badge.fury.io/rb/bio-ensembl-rest.png)](http://badge.fury.io/rb/bio-ensembl-rest)
 
 Obtaining
 ---------
