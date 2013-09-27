@@ -2,6 +2,38 @@ module EnsemblRest
   module ComparativeGenomics
 
     ##
+    # Retrieves genomic alignments as separate blocks based on its location
+    def self.alignment_block(species, region, opts = {})
+      opts = EnsemblRest.parse_options opts
+      path = EnsemblRest.build_path "/alignment/block/region/#{species}/#{region}", opts
+
+      if opts['content-type'] == 'ruby'
+        plain_opts = opts.clone
+        plain_opts['content-type'] = 'application/json'
+        return JSON.parse ComparativeGenomics.alignment_block species, region, plain_opts
+      end
+
+      return EnsemblRest.fetch_data path, opts, 'compara'
+    end
+
+    ##
+    # Retrieves genomic alignments as a single slice based on its location
+    def self.alignment_slice(species, region, opts = {})
+      opts = EnsemblRest.parse_options opts
+      path = EnsemblRest.build_path "/alignment/slice/region/#{species}/#{region}", opts
+
+      if opts['content-type'] == 'ruby'
+        plain_opts = opts.clone
+        plain_opts['content-type'] = 'application/json'
+        return JSON.parse ComparativeGenomics.alignment_slice species, region, plain_opts
+      end
+
+      return EnsemblRest.fetch_data path, opts, 'compara'
+    end
+
+
+
+    ##
     # Retrieves Gene Tree dumps for a given Gene Tree stable identifier
     def self.genetree_id(id, opts = {})
       return _genetree_generic id, 'id', opts

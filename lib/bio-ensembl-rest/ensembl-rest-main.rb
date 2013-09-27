@@ -52,7 +52,6 @@ module EnsemblRest
     opts
   end
 
-
   ## HTTP request stuff ##
 
   def self.build_path(home, opts) # :nodoc:
@@ -62,7 +61,6 @@ module EnsemblRest
     URI::encode path
   end
 
-  # TODO: add tests to check if this default stuff is ok
   def self.fetch_data(path, opts, mod) # :nodoc:
     # what we should set as content-type in the header
     # to keep ensembl happy when the the user does not

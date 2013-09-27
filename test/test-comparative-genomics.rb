@@ -2,6 +2,37 @@ require_relative 'helper'
 
 class TestComparativeGenomics < Test::Unit::TestCase
 
+
+  context 'alignment_block' do 
+
+    setup do
+      EnsemblRest.connect_db
+    end
+
+    should 'support a basic call and return the correct data' do
+      align = ComparativeGenomics.alignment_block 'homo sapiens', '2:106040000-106040050:1'
+      assert align.index 'GTAGCAGGAAGAATGTTTATCTCTGTGTCTTGTCTTTCTGGTTAAAGGTAT'
+    end   
+
+    sleep(1)
+
+  end
+
+
+  context 'alignment_slice' do 
+
+    setup do
+      EnsemblRest.connect_db
+    end
+
+    should 'support a basic call and return the correct data' do
+      align = ComparativeGenomics.alignment_slice 'homo sapiens', '2:106040000-106040050:1'
+      assert align.index 'GTAGCAGGAAGAATGTTTATCTCTGTGTCTTGTCTTTCTGGTTAAAGGTAT'
+    end   
+
+  end
+
+
   context 'genetree_id' do 
 
     setup do 
