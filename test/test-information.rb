@@ -34,6 +34,63 @@ class TestInformation < Test::Unit::TestCase
 
   end
 
+  context 'info_analysis' do
+
+    setup do 
+      EnsemblRest.connect_db
+    end
+
+    should 'support a basic call and return the correct data' do
+      assert_nothing_raised do 
+        info = Information.info_analysis 'homo sapiens'
+      end     
+    end
+
+  end
+
+  context 'info_biotypes' do
+
+    setup do 
+      EnsemblRest.connect_db
+    end
+
+    should 'support a basic call and return the correct data' do
+      assert_nothing_raised do 
+        info = Information.info_biotypes 'homo sapiens'
+      end     
+    end
+
+  end
+
+  context 'info_compara_methods' do
+
+    setup do 
+      EnsemblRest.connect_db
+    end
+
+    should 'support a basic call and return the correct data' do
+      assert_nothing_raised do 
+        info = Information.info_compara_methods
+      end     
+    end
+
+  end
+
+  context 'info_compara_species_sets_method' do
+
+    setup do 
+      EnsemblRest.connect_db
+    end
+
+    should 'support a basic call and return the correct data' do
+      assert_nothing_raised do 
+        info = Information.info_compara_species_sets_method 'EPO'
+      end     
+    end
+
+  end
+
+
 
   context 'info_comparas' do
 

@@ -33,6 +33,70 @@ module EnsemblRest
     end
 
 
+    ## 
+    # Lists the available analyses by logic name and the database type those logic names are found in.
+    def self.info_analysis(species, opts = {})
+      opts = EnsemblRest.parse_options opts
+      path = EnsemblRest.build_path "/info/analysis/#{species}", opts
+
+      if opts['content-type'] == 'ruby'
+        plain_opts = opts.clone
+        plain_opts['content-type'] = 'application/json'
+        return JSON.parse info_analysis species, plain_opts
+      end
+
+      return EnsemblRest.fetch_data path, opts, 'information'  
+    end
+
+
+    ## 
+    # Lists all available biotypes for the given species.
+    def self.info_biotypes(species, opts = {})
+      opts = EnsemblRest.parse_options opts
+      path = EnsemblRest.build_path "/info/biotypes/#{species}", opts
+
+      if opts['content-type'] == 'ruby'
+        plain_opts = opts.clone
+        plain_opts['content-type'] = 'application/json'
+        return JSON.parse info_biotypes species, plain_opts
+      end
+
+      return EnsemblRest.fetch_data path, opts, 'information'  
+    end
+
+    ##
+    # 
+    def self.info_compara_methods(opts = {})
+      opts = EnsemblRest.parse_options opts
+      path = EnsemblRest.build_path "/info/compara/methods", opts
+
+      if opts['content-type'] == 'ruby'
+        plain_opts = opts.clone
+        plain_opts['content-type'] = 'application/json'
+        return JSON.parse info_compara_methods plain_opts
+      end
+
+      return EnsemblRest.fetch_data path, opts, 'information' 
+    end
+
+
+    ##
+    # 
+    def self.info_compara_species_sets_method(method, opts = {})
+      opts = EnsemblRest.parse_options opts
+      path = EnsemblRest.build_path "/info/compara/species_sets/#{method}", opts
+
+      if opts['content-type'] == 'ruby'
+        plain_opts = opts.clone
+        plain_opts['content-type'] = 'application/json'
+        return JSON.parse info_compara_species_sets_method method, plain_opts
+      end
+
+      return EnsemblRest.fetch_data path, opts, 'information' 
+    end
+
+
+
     ##
     # Lists all available comparative genomics databases and their data release
     def self.info_comparas(opts = {})
