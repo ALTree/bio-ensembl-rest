@@ -14,9 +14,9 @@ module EnsemblRest
     end 
 
     ##
-    # Find all descendents, all terms below, belonging to a given term. 
-    def self.ontology_descendents(id, opts = {})
-      return _ontology_id_generic id, 'descendents', opts
+    # Find all descendants, all terms below, belonging to a given term. 
+    def self.ontology_descendants(id, opts = {})
+      return _ontology_id_generic id, 'descendants', opts 
     end
 
     ##
@@ -32,8 +32,8 @@ module EnsemblRest
         url = "/ontology/ancestors/#{id}"
       when 'ancestors_chart'
         url = "/ontology/ancestors/chart/#{id}"
-      when 'descendents'
-        url = "/ontology/descendents/#{id}"
+      when 'descendants'
+        url = "/ontology/descendants/#{id}" 
       when 'plain'
         url = "/ontology/id/#{id}"
       end

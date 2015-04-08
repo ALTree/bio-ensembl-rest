@@ -13,6 +13,11 @@ module EnsemblRest
       return _taxonomy_generic id, 'classification', opts
     end
 
+    # Search for a taxonomic id by a non-scientific name
+    def self.taxonomy_name(name, opts = {})
+      return _taxonomy_generic name, 'name', opts
+    end
+
     def self._taxonomy_generic(id, type, opts = {}) # :nodoc:
       opts = EnsemblRest.parse_options opts
       path = EnsemblRest.build_path "/taxonomy/#{type}/#{id}", opts

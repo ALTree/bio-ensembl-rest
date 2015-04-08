@@ -2,36 +2,20 @@ require_relative 'helper'
 
 class TestComparativeGenomics < Test::Unit::TestCase
 
-
-  context 'alignment_block' do 
+  context 'alignment' do 
 
     setup do
       EnsemblRest.connect_db
     end
 
     should 'support a basic call and return the correct data' do
-      align = ComparativeGenomics.alignment_block 'homo sapiens', '2:106040000-106040050:1'
-      assert align.index 'GTAGCAGGAAGAATGTTTATCTCTGTGTCTTGTCTTTCTGGTTAAAGGTAT'
+      align = ComparativeGenomics.alignment 'homo sapiens', '2:106040000-106040050:1'
+      assert align.index 'CAATTGACATTTGAAACAGGT'
     end   
 
     sleep(1)
 
   end
-
-
-  context 'alignment_slice' do 
-
-    setup do
-      EnsemblRest.connect_db
-    end
-
-    should 'support a basic call and return the correct data' do
-      align = ComparativeGenomics.alignment_slice 'homo sapiens', '2:106040000-106040050:1'
-      assert align.index 'GTAGCAGGAAGAATGTTTATCTCTGTGTCTTGTCTTTCTGGTTAAAGGTAT'
-    end   
-
-  end
-
 
   context 'genetree_id' do 
 
@@ -191,6 +175,41 @@ class TestComparativeGenomics < Test::Unit::TestCase
     sleep(1)
 
   end
+
+  ######## obsolete tests ######
+  ### context 'alignment_block' do 
+
+  ###  setup do
+  ###    EnsemblRest.connect_db
+  ###  end
+
+  ###  should 'support a basic call and return the correct data' do
+      ### changed the instructions below
+      ### align = ComparativeGenomics.alignment_block 'homo sapiens', '2:106040000-106040050:1'
+      ### assert align.index 'GTAGCAGGAAGAATGTTTATCTCTGTGTCTTGTCTTTCTGGTTAAAGGTAT'
+  ###    align = ComparativeGenomics.alignment_block 'homo sapiens', '2:106040000-106040050:1'
+  ###    assert align.index 'CAATTGACATTTGAAACAGGT'
+  ###  end   
+
+  ###  sleep(1)
+
+  ### end
+
+
+  ####
+  ### context 'alignment_slice' do 
+
+  ###   setup do
+  ###     EnsemblRest.connect_db
+  ###   end
+
+  ###   should 'support a basic call and return the correct data' do
+  ###     align = ComparativeGenomics.alignment_slice 'homo sapiens', '2:106040000-106040050:1'
+  ###    assert align.index 'GTAGCAGGAAGAATGTTTATCTCTGTGTCTTGTCTTTCTGGTTAAAGGTAT'
+  ###  end   
+
+  ### end
+  ###############
 
 
 end

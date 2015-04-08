@@ -7,7 +7,6 @@ module EnsemblRest
       opts = EnsemblRest.parse_options opts
       path = EnsemblRest.build_path "/sequence/id/#{id}", opts
 
-      # FIXME: if multiseq is true Bio::Sequence can't parse text/plain right
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
         plain_opts['content-type'] = 'text/plain'

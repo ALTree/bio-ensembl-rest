@@ -3,6 +3,8 @@ source "http://rubygems.org"
 # Example:
 #   gem "activesupport", ">= 2.3.5"
 
+require 'minitest/spec'
+require 'minitest/autorun'
 gem "bio", ">= 1.4.3"
 gem "libxml-ruby", ">= 2" if RUBY_PLATFORM != 'java'
 

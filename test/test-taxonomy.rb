@@ -1,4 +1,4 @@
-  require_relative 'helper'
+require_relative 'helper'
 
 class TestTaxonomy < Test::Unit::TestCase
 
@@ -26,6 +26,22 @@ class TestTaxonomy < Test::Unit::TestCase
 
   end
 
+  context 'test taxonomy_name' do 
+
+    setup do 
+      EnsemblRest.connect_db
+    end
+
+    should 'support a basic call and return the correct data' do
+      tax = Taxonomy.taxonomy_name 'human'
+      assert tax.index 'Homo sapiens'           # the species with ID 9606
+      assert tax.index 'Neandertal'             # one if his sons
+      assert tax.index '63221'                  # neandertal has this ID
+    end
+
+    sleep(1)
+
+  end
 
   context 'test taxonomy_classification' do 
 

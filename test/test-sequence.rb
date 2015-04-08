@@ -69,7 +69,7 @@ class TestSequence < Test::Unit::TestCase
 
     should 'support a basic call and return the correct data' do
       seq = Sequence.sequence_region 'human', 'X:1000000..1000100:1'
-      assert_equal 'GAAACAGCTACTTGG', seq[0..14]
+      assert_equal 'CTGTAGAAACATTAG', seq[0..14]
       assert_equal seq.size, 101
     end
 
