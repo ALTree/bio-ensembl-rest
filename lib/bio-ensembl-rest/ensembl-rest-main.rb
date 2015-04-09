@@ -2,7 +2,7 @@ module EnsemblRest
   ## start HTTP database connection ##
 
   def self.connect_db 
-    $SERVER = URI.parse 'http://beta.rest.ensembl.org'
+    $SERVER = URI.parse 'http://rest.ensembl.org' 
     $HTTP_CONNECTION = Net::HTTP.new($SERVER.host, $SERVER.port)
   end
 
@@ -68,12 +68,14 @@ module EnsemblRest
     default_types = {
       'sequence' => 'text/plain',
       'compara' => 'text/xml',
+      'archive' => 'application/json', 
       'crossreference' => 'application/json',
       'features' => 'application/json',
       'information' => 'application/json',
       'lookup' => 'application/json',
       'mapping' => 'application/json',
       'ontologies' => 'application/json',
+      'regulatory' => 'application/json', 
       'taxonomy' => 'application/json',
       'variation' => 'application/json'
     }

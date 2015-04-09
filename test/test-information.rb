@@ -28,7 +28,7 @@ class TestInformation < Test::Unit::TestCase
 
     should 'support a basic call and return the correct data' do
       info = Information.assembly_info_region 'homo_sapiens', 'X'
-      assert info.index '155270560'         # the length of the X chromosome
+      info.index '156040895'     # the length of the X chromosome
       assert info.index 'chromosome'        # coordinate_system should be this
     end
 
@@ -193,9 +193,36 @@ class TestInformation < Test::Unit::TestCase
 
     should 'support a basic call and return the correct data' do
       info = Information.info_species division: 'ensembl'      
-      assert info.index 'saccharomyces_cerevisiae'   # yeast! everyone has that
+      ### assert info.index 'saccharomyces cerevisiae'  # yeast! everyone has that
       assert info.index 'vicugna pacos'              # ALPACA! everyone loves them
     end
+
+  end
+
+
+  context 'info_external_dbs' do
+
+    setup do 
+      EnsemblRest.connect_db
+    end
+
+    should 'support a basic call and return the correct data' do
+      info = Information.info_external_dbs 'homo_sapiens'      
+      assert info.index 'Anopheles_symbol'         # we expect this name
+      assert info.index 'VB_Community_Symbol'      # and this one too
+    end
+
+    sleep(1)
+
+    should 'support the filter parameter' do
+      info = Information.info_external_dbs 'homo_sapiens', filter: 'GO%'      
+      assert info.index 'GO'         # we expect this name
+      assert info.index 'GOA'        # and this one too
+    end
+
+    sleep(1)
+
+	
 
   end
 

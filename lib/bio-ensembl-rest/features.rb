@@ -10,7 +10,7 @@ module EnsemblRest
       encoded_query = ""
       features.each {|f| encoded_query << "feature=#{f};"}
 
-      path = (EnsemblRest.build_path "/feature/id/#{id}", opts) + encoded_query
+      path = (EnsemblRest.build_path "/overlap/id/#{id}", opts) + encoded_query 
 
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
@@ -31,7 +31,7 @@ module EnsemblRest
       encoded_query = ""
       features.each {|f| encoded_query << "feature=#{f};"}
 
-      path = (EnsemblRest.build_path "/feature/region/#{species}/#{region}", opts) + encoded_query
+      path = (EnsemblRest.build_path "/overlap/region/#{species}/#{region}", opts) + encoded_query 
 
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
@@ -46,7 +46,7 @@ module EnsemblRest
     # Uses the given identifier to return translation related features.
     def self.feature_translation(id, opts = {})
       opts = EnsemblRest.parse_options opts
-      path = EnsemblRest.build_path "/feature/translation/#{id}", opts
+      path = EnsemblRest.build_path "/overlap/translation/#{id}", opts 
 
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone

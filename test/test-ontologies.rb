@@ -1,3 +1,4 @@
+###fixed tests
 require_relative 'helper'
 
 class TestOntologies < Test::Unit::TestCase
@@ -37,9 +38,9 @@ class TestOntologies < Test::Unit::TestCase
     should 'support a basic call and return the correct data' do
       ont = Ontologies.ontology_ancestor_chart 'GO:0005667'
       assert ont.index 'GO:0005575'       # GO:0005667 should have this ancestor
-      assert ont.index 'GO:0005622'       # and this 
-      assert ont.index 'GO:0005623'       # and this
-      assert ont.index 'GO:0005654'       # and this one, too
+      assert ont.index 'GO:0032991'
+      assert ont.index 'GO:0044424'
+      assert ont.index 'GO:0005667'
     end
 
     sleep(1)
@@ -54,18 +55,18 @@ class TestOntologies < Test::Unit::TestCase
     end
 
     should 'support a basic call and return the correct data' do
-      ont = Ontologies.ontology_descendents 'GO:0005667'
-      assert ont.index 'GO:0043234'       # GO:0005667 should have this descendent
-      assert ont.index 'GO:0044451'       # and this 
-      assert ont.index 'GO:0005654'       # and this
-      assert ont.index 'GO:0043231'       # and this one, too
+      ont = Ontologies.ontology_descendants 'GO:0005667'
+      assert ont.index 'GO:0043234'       # GO:0005667 should have this descendant
+      assert ont.index 'GO:0044424'
+      assert ont.index 'GO:0032991'
+      assert ont.index 'GO:0044464'
     end
 
     sleep(1)
 
     should 'support the subset parameter' do 
-      ont1 = Ontologies.ontology_descendents 'GO:0005667', subset: 'goslim_generic'
-      ont2 = Ontologies.ontology_descendents 'GO:0005667'
+      ont1 = Ontologies.ontology_descendants 'GO:0005667', subset: 'goslim_generic'
+      ont2 = Ontologies.ontology_descendants 'GO:0005667'
       assert ont1.size < ont2.size
     end
 
@@ -83,8 +84,8 @@ class TestOntologies < Test::Unit::TestCase
     should 'support a basic call and return the correct data' do
       ont = Ontologies.ontology_id 'GO:0005667'
       assert ont.index 'transcription factor complex'    # what GO:0005667 is
-      assert ont.index 'GO:0000120'                      # a son of him
-      assert ont.index 'GO:0044451'                      # his parent
+      assert ont.index 'GO:0044797'			     # a son of him 
+      assert ont.index 'GO:0043234' 			     # his parent
     end
 
     sleep(1)
@@ -108,8 +109,8 @@ class TestOntologies < Test::Unit::TestCase
     should 'support a basic call and return the correct data' do
       ont = Ontologies.ontology_name 'transcription factor complex'
       assert ont.index 'GO:0005667'       # ID of transcription factor complex
-      assert ont.index 'GO:0000120'       # a son of him
-      assert ont.index 'GO:0044451'       # his parent
+      assert ont.index 'GO:0044797'			     # a son of him 
+      assert ont.index 'GO:0043234' 			     # his parent
     end
 
     sleep(1)

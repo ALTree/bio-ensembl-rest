@@ -11,8 +11,9 @@ class TestFeatures < Test::Unit::TestCase
     should 'support a basic call and return the correct data' do
       fts = Features.feature_id 'ENSG00000157764', %w(gene)
       assert fts.index 'ENSG00000157764'      # gene ID
-      assert fts.index '140424943'            # gene starts here
-      assert fts.index '140624564'            # gene end here
+      assert fts.index '140719327'                # gene starts here
+      assert fts.index '140924764'
+      
     end
 
 
@@ -50,10 +51,11 @@ class TestFeatures < Test::Unit::TestCase
     should 'support a basic call and return the correct data' do
       fts = Features.feature_region 'human', '7:140424943-140624564', %w(gene)
       assert_nothing_raised { JSON.parse fts }
-      assert fts.index 'ENSG00000157764'   # gene ID
-      assert fts.index 'BRAF'              # gene name
-      assert fts.index '140424943'         # gene starts here
-      assert fts.index '140624564'         # gene end here
+      assert fts.index 'ENSG00000146955' 
+      assert fts.index 'GRCh38'
+      assert fts.index '140404043'
+      assert fts.index '140426250'
+      
     end
 
     sleep(1)

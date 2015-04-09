@@ -68,7 +68,6 @@ class TestCrossReference < Test::Unit::TestCase
     should 'support a basic call and return the correct data' do
       ref = CrossReference.xrefs_symbol 'homo_sapiens', 'BRCA2'
       assert ref.index 'ENSG00000139618'
-      assert ref.index 'ENST00000544455'
     end
 
     should 'return xml object' do

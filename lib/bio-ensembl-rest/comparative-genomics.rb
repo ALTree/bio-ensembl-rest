@@ -1,37 +1,19 @@
 module EnsemblRest
   module ComparativeGenomics
 
-    ##
-    # Retrieves genomic alignments as separate blocks based on its location
-    def self.alignment_block(species, region, opts = {})
+    # Retrieves genomic alignments as separate blocks based on a region and species
+    def self.alignment(species, region, opts = {})
       opts = EnsemblRest.parse_options opts
-      path = EnsemblRest.build_path "/alignment/block/region/#{species}/#{region}", opts
+      path = EnsemblRest.build_path "/alignment/region/#{species}/#{region}", opts
 
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
         plain_opts['content-type'] = 'application/json'
-        return JSON.parse ComparativeGenomics.alignment_block species, region, plain_opts
+        return JSON.parse ComparativeGenomics.alignment species, region, plain_opts
       end
 
       return EnsemblRest.fetch_data path, opts, 'compara'
     end
-
-    ##
-    # Retrieves genomic alignments as a single slice based on its location
-    def self.alignment_slice(species, region, opts = {})
-      opts = EnsemblRest.parse_options opts
-      path = EnsemblRest.build_path "/alignment/slice/region/#{species}/#{region}", opts
-
-      if opts['content-type'] == 'ruby'
-        plain_opts = opts.clone
-        plain_opts['content-type'] = 'application/json'
-        return JSON.parse ComparativeGenomics.alignment_slice species, region, plain_opts
-      end
-
-      return EnsemblRest.fetch_data path, opts, 'compara'
-    end
-
-
 
     ##
     # Retrieves Gene Tree dumps for a given Gene Tree stable identifier
@@ -143,6 +125,38 @@ module EnsemblRest
 
       return homologies
     end
+
+####### obsolete methods #######
+    ####
+    ### Retrieves genomic alignments as separate blocks based on its location
+    ## def self.alignment_block(species, region, opts = {})
+    ##   opts = EnsemblRest.parse_options opts
+    ##   path = EnsemblRest.build_path "/alignment/block/region/#{species}/#{region}", opts
+
+    ##   if opts['content-type'] == 'ruby'
+    ##     plain_opts = opts.clone
+    ##     plain_opts['content-type'] = 'application/json'
+    ##     return JSON.parse ComparativeGenomics.alignment_block species, region, plain_opts
+    ##   end
+
+    ##   return EnsemblRest.fetch_data path, opts, 'compara'
+    ## end
+
+    ####
+    ### Retrieves genomic alignments as a single slice based on its location
+    ## def self.alignment_slice(species, region, opts = {})
+    ##   opts = EnsemblRest.parse_options opts
+    ##   path = EnsemblRest.build_path "/alignment/slice/region/#{species}/#{region}", opts
+
+    ##   if opts['content-type'] == 'ruby'
+    ##     plain_opts = opts.clone
+    ##     plain_opts['content-type'] = 'application/json'
+    ##     return JSON.parse ComparativeGenomics.alignment_slice species, region, plain_opts
+    ##   end
+
+    ##   return EnsemblRest.fetch_data path, opts, 'compara'
+    ## end
+###################
 
 
   end

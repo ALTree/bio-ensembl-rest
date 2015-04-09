@@ -76,8 +76,8 @@ class TestMapping < Test::Unit::TestCase
       map = Mapping.map_from_cds 'ENST00000288602', '1..1000'
       assert map.index '7'                 # we asked for stuff on chromosome 7
       assert map.index '-1'                # strand -1
-      assert map.index '140624366'         # one of the mapping starts here
-      assert map.index '140624503'         # and ends here
+      assert map.index '140850111'         # one of the mapping starts here
+      assert map.index '140850212'         # and ends here
     end
 
     sleep(1)
@@ -95,8 +95,8 @@ class TestMapping < Test::Unit::TestCase
       map = Mapping.map_from_translation 'ENSP00000288602', '100..300'
       assert map.index '7'                 # we asked for stuff on chromosome 7
       assert map.index '-1'                # strand -1
-      assert map.index '140534409'         # one of the mapping starts here
-      assert map.index '140534615'         # and ends here
+      assert map.index '140808892'         # one of the mapping starts here
+      assert map.index '140808995'         # and ends here
     end
 
     sleep(1)

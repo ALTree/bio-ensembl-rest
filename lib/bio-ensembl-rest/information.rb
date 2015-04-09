@@ -5,7 +5,7 @@ module EnsemblRest
     # Returns information about the current available assemblies in this given species
     def self.assembly_info(species, opts = {})
       opts = EnsemblRest.parse_options opts
-      path = EnsemblRest.build_path "/assembly/info/#{species}", opts
+      path = EnsemblRest.build_path "/info/assembly/#{species}", opts 
 
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
@@ -21,7 +21,7 @@ module EnsemblRest
     # Returns information about the given toplevel sequence region given to this endpoint
     def self.assembly_info_region(species, region, opts = {})
       opts = EnsemblRest.parse_options opts
-      path = EnsemblRest.build_path "/assembly/info/#{species}/#{region}", opts
+      path = EnsemblRest.build_path "/info/assembly/#{species}/#{region}", opts 
 
       if opts['content-type'] == 'ruby'
         plain_opts = opts.clone
@@ -192,6 +192,20 @@ module EnsemblRest
       return EnsemblRest.fetch_data path, opts, 'information' 
     end 
 
+    ##
+    # List all available external sources for a species
+    def self.info_external_dbs(species, opts = {})
+      opts = EnsemblRest.parse_options opts
+      path = EnsemblRest.build_path "/info/external_dbs/#{species}", opts
+
+      if opts['content-type'] == 'ruby'
+        plain_opts = opts.clone
+        plain_opts['content-type'] = 'application/json'
+        return JSON.parse info_external_dbs plain_opts
+      end
+
+      return EnsemblRest.fetch_data path, opts, 'information' 
+    end 
 
   end
 end
